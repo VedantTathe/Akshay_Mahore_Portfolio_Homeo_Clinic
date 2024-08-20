@@ -28,8 +28,7 @@ SECRET_KEY = 'django-insecure-2elri*#^#qa=@x)vkdea9bqym3+(6xrmi!_h$*t(c7w3y_3tag
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.vercel.app', '.now.sh','https://asmhomeoclinic.onrender.com']
-
+ALLOWED_HOSTS = []
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
@@ -128,6 +127,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     STATIC_DIRS,
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+MY_ROOT = os.path.join(BASE_DIR,'static')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
