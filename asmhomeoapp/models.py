@@ -92,6 +92,7 @@ class MyClinic():
         
     
     def sendMessage(self, name, email, message):
+
         data = {}
         try:
             i = {'name': name, 'email': email, 'message': message}
@@ -118,3 +119,85 @@ class MyClinic():
             
 
         return data
+
+
+        
+    
+    def addPatient(self, name, mobileno, regno):
+
+        data = {}
+        try:
+            i = {'Name': name, 'MobileNo': mobileno, 'RegNo': regno}
+
+            client = MongoClient(constring)  # Make sure 'constring' is defined correctly
+
+            db = client['Clinic']
+
+
+            coll = db['Asmhomeo']
+
+            coll.insert_one(i)
+
+            data.update({
+                'message': 'Patient Added Successfully..!'
+            })
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+            data.update({
+                'err': 'Oops..! Something Went Wrong..!'
+            })
+
+            
+
+
+        return data
+
+
+
+    
+    
+    def delPatient(self,regno):
+
+        data = {}
+        try:
+
+            client = MongoClient(constring)  # Make sure 'constring' is defined correctly
+
+            db = client['Clinic']
+
+
+            coll = db['Asmhomeo']
+
+            result = coll.delete_many({'RegNo': regno})
+
+            # Check if a document was deleted
+            if result.deleted_count > 0:
+                data.update({
+                    'message': 'Patient Deleted Successfully..!'
+                })
+            else:
+                data.update({
+
+
+                    'err': 'No patient found with the given RegNo.'
+                })
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+
+
+            data.update({
+                'err': 'Oops..! Something Went Wrong..!'
+            })
+
+            
+
+
+        return data
+
+
+
+    

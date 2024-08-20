@@ -30,4 +30,7 @@ urlpatterns = [
     path('updatenotice', views.updatenotice, name='updatenotice'),
     path('updatenotice/<str:stat>/', views.updatenotice, name='updatenotice'),
     path('sendmessage/', views.sendmessage, name='sendmessage'),
+    path('addpatient/', views.addpatient, name='addpatient'),
+    path('delpatient/<str:regno>/', views.delpatient, name='delpatient'),
+    path('adminpage2', views.adminpage2, name='adminpage2'),
 ]

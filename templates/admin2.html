@@ -15,24 +15,24 @@
     <style>
         
 .loader-btn {
-width: 28px;
-height: 28px;
-border: 5px solid #FFF;
-border-bottom-color: #FF3D00;
-border-radius: 50%;
-display: inline-block;
-box-sizing: border-box;
-animation: rotation 1s linear infinite;
-}
-
-@keyframes rotation {
-0% {
-    transform: rotate(0deg);
-}
-100% {
-    transform: rotate(360deg);
-}
-} 
+    width: 28px;
+    height: 28px;
+    border: 5px solid #FFF;
+    border-bottom-color: #FF3D00;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+    
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
     </style>
 </head>
 
@@ -70,9 +70,9 @@ animation: rotation 1s linear infinite;
                     <span class="nav-contact-desk"><i class="fa-solid fa-phone"></i> 9922332719</span>
                 </ul>
                 <ul id="nav-links-list-desk" class="navbar-nav list-unstyled nav d-flex flex-column m-0 p-0">
-                    <li class="nav-item m-2"><a class="nav-link " href="{% url 'index' %}">HOME</a></li>
-                        <li class="nav-item m-2"><a class="nav-link active-link" href="{% url 'adminpage' %}">SEARCH SECTION</a></li>
-                        <li class="nav-item m-2"><a class="nav-link" href="{% url 'adminpage2' %}">ADMIN PAGE2 (MORE FEATURES)</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="{% url 'index' %}">HOME</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="{% url 'adminpage' %}">SEARCH SECTION</a></li>
+                    <li class="nav-item m-2"><a class="nav-link active-link" href="{% url 'adminpage2' %}">ADMIN PAGE2 (MORE FEATURES)</a></li>
                     
                 </ul>
                 <ul id="contact-icons-desk" class="mt-2 contact-icons">
@@ -119,9 +119,9 @@ animation: rotation 1s linear infinite;
                     </ul>
                     <ul id="nav-links-list" class="navbar-nav list-unstyled nav d-flex flex-column m-0 p-0">
                         <li class="nav-item m-2"><a class="nav-link" href="{% url 'index' %}">HOME</a></li>
-                        <li class="nav-item m-2"><a class="nav-link active-link" href="{% url 'adminpage' %}">SEARCH SECTION</a></li>
-                        <li class="nav-item m-2"><a class="nav-link" href="{% url 'adminpage2' %}">ADMIN PAGE2 (MORE FEATURES)</a></li>
-                      </ul>
+                        <li class="nav-item m-2"><a class="nav-link" href="{% url 'adminpage' %}">SEARCH SECTION</a></li>
+                        <li class="nav-item m-2"><a class="nav-link active-link" href="{% url 'adminpage2' %}">ADMIN PAGE2 (MORE FEATURES)</a></li>
+                    </ul>
                     <ul id="contact-icons" class="mt-2 contact-icons">
                         <span class="icon" style="font-size: larger;"><a target="_blank"
                                 href="https://www.linkedin.com/in/vedant-tathe-04b5a2262/"><i
@@ -162,50 +162,83 @@ animation: rotation 1s linear infinite;
                     src="{% static 'images/profile-pic.png' %}" alt="profile_pic">
 
                 <div class="container">
-                    <div id="search-sec" class="section container head-narrow-content position-relative">
-                        <div id="search-sec1" class="row">
-                            <div class="col-md-12 mt-5 mt-lg-0">
-                                <div class="row row-bottom-padded-sm mt-5 mt-lg-0">
-                                    <a href="{% url 'adminpage2' %}" >Click here for More features (Add,Del,Update patients, Notice, Status)</a>
                     
-                                    <div class="col-md-12 mt-5 mt-lg-0">
-                                        <div class="search-sec-desc"><span class="head-heading">Search Section</span>
-                                            <h3 class="heading-meta3 mt-3">Search (Name or Mobile No. or Register No.)
-                                            </h3>
-                                            <div class="container my-5 h-100">
-                                                <div class="form-group m-2 col-md-12">
-                                                    <label for="searchinput">Search (Name or Mobile No. or Register
-                                                        No.)</label>
-                                                    <input type="text" class="form-control" id="searchinput"
-                                                        aria-describedby="NamelHelp" required placeholder="Search Here">
-                                                </div>
-                                                <div id="search-data" class="table-responsive position-relative h-100">
+                    <div id="change_status" class="section container my-5 head-narrow-content">
+                        <div id="change_status1" class="row">
+                            <div class="col-md-12">
+                                <div class="row row-bottom-padded-sm">
+                                    <div class="col-md-12">
+                                        <div class="change_status-desc"><span class="head-heading">Add Patient
+                                                Section</span>
+                                            <h3 class="heading-meta3 mt-3">Type Info and then submit the data</h3>
+                                            <div class="container col-md-12 m-3">
+                                                <form action="{% url 'addpatient' %}" method="post">
+                                                    {% csrf_token %}
 
-                                                    <!-- <div class="col-md-10 m-2  p-3 text-center rounded-2 position-relative" -->
-                                                    <!-- style="background-color: #ededed; margin: auto; color:black; font-weight: 400;"> -->
-
-                                                    <table class="table table-striped table-hover">
-
-                                                        <!-- <table class="container m-auto"> -->
-                                                        <div class="loader-div" id="loader">
-                                                            <div class="loader"></div>
-                                                            
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        <br>
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-4">
+                                                            <input name="name" type="text" class="form-control"
+                                                                placeholder="Name" required>
                                                         </div>
+                                                        <div class="col-12 col-md-4">
+                                                            <input name="mobileno" type="text" class="form-control"
+                                                                placeholder="Mobile Number" required>
+                                                        </div>
+                                                        <div class="col-12 col-md-4">
+                                                            <input name="regno" type="text" class="form-control"
+                                                                placeholder="Register Number" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" row d-flex justify-content-center w-100">
+
+                                                        <div class="m-2 col-12  col-md-8">
+                                                            <button type="submit"
+                                                                class="btn btn-success w-100 text-center m-auto">SUBMIT</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
 
 
+                    <div id="change_status" class="section container my-5 head-narrow-content">
+                        <div id="change_status1" class="row">
+                            <div class="col-md-12">
+                                <div class="row row-bottom-padded-sm">
+                                    <div class="col-md-12">
+                                        <div class="change_status-desc"><span class="head-heading">Notice Section</span>
+                                            <h3 class="heading-meta3 mt-3">Type important notice in below textbox and
+                                                submit it</h3>
+                                            <div class="container col-md-12 m-3">
+                                                <form action="{% url 'updatenotice' %}" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="form-group m-2">
+                                                        <label for="exampleInputMessage1">Message</label>
+                                                        <textarea name="notice" rows="5" class="form-control"
+                                                            id="exampleInputMessage1" required
+                                                            placeholder="Enter Message"></textarea>
+                                                    </div>
+                                                    <div class="row d-flex justify-content-center w-100">
 
+                                                        <div class="m-2  col-md-5">
+                                                            <button type="submit"
+                                                                class="btn btn-success w-100 text-center m-auto">SUBMIT</button>
+                                                        </div>
+                                                        <div class="m-2 col-md-5">
+                                                            <a class="btn btn-secondary w-100 text-center m-auto"
+                                                                href="{% url 'updatenotice' stat='NOTSET' %}">RESET</a>
+                                                        </div>
+                                                    </div>
+                                                </form>
 
-                                                        <!-- </table>-->
-                                                    </table>
-
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -214,6 +247,36 @@ animation: rotation 1s linear infinite;
 
                         </div>
                     </div>
+
+                    <div id="change_status" class="section container my-5 head-narrow-content">
+                        <div id="change_status1" class="row">
+                            <div class="col-md-12">
+                                <div class="row row-bottom-padded-sm">
+                                    <div class="col-md-12">
+                                        <div class="change_status-desc"><span class="head-heading">Change Clinic
+                                                Status</span>
+                                            <h3 class="heading-meta3 mt-3">If you want to change the clinic status then
+                                                click appropriate
+                                                button</h3>
+                                            <div class="container col-md-12 m-3">
+                                                <a href="{% url 'changestatus' stat='OPEN' %}"
+                                                    class="m-2 col-md-5 btn btn-warning text-white">OPEN</a>
+                                                <a href="{% url 'changestatus' stat='CLOSED' %}"
+                                                    class="m-2 col-md-5 btn btn-danger">CLOSED</a>
+                                                <a href="{% url 'changestatus' stat='NOTSET' %}"
+                                                    class="m-2 col-md-5 btn btn-secondary btn-learn">RESET</a>
+                                            </div>
+                                            <div>
+                                                <p>NOTE: Clinic status will remain same till next day</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
 
 
                     <div id="footer" class="w-100 m-0 bg-danger">
@@ -234,76 +297,21 @@ animation: rotation 1s linear infinite;
                 integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            
             <script>
-                $(document).ready(function () {
-                    function fetchData(query) {
-                        $.ajax({
-                            url: '{% url "searchdata" %}',
-                            method: 'GET',
-                            data: { search: query },
-                            beforeSend: function () {
-                                $('#loader').show();
-                            },
-                            success: function (data) {
-                                $('#loader').hide();
-                                $('#search-data table').empty(); // Clear previous data
-                                data.forEach(function (item) {
-                                    // var row = '<tr class="d-flex flex-wrap gap-2">' +
-                                    //     '<td>' + item.Name + '</td>' +
-                                    //     '<td>' + item.MobileNo + '</td>' +
-                                    //     '<td>' + item.RegNo + '</td>' +
-                                    //     '<td> <a href="'+'" class="my-1 btn btn-warning">Update</a></td>' +
-                                    //     '<td><a href="'+'" class="my-1 btn btn-danger">Delete</a> </td>' +
-                                    //     '</tr>';
-
-
-                                    var url = '/delpatient/' + encodeURIComponent(item.RegNo) + '/';
-                                    var row = '<tr class="d-flex align-items-center gap-2">' +
-                                        '<td class="col">' + item.Name + '</td>' +
-                                        '<td class="col">' + item.MobileNo + '</td>' +
-                                        '<td class="col">' + item.RegNo + '</td>' +
-                                        '<td class="col-auto">' +
-                                        '<a href="' + url + '" class="btn btn-danger btn-sm my-1">Delete</a>' +
-                                        '</td>' +
-                                        '<td class="col-auto">' +
-                                        '<a href="#" class="btn btn-warning btn-sm my-1">Update</a>' +
-                                        '</td>' +
-                                        '</tr>';
-                                    $('#search-data table').append(row);
-                                });
-                            },
-                            error: function (xhr, status, error) {
-                                $('#loader').hide();
-                                console.error('Error fetching clinic status:', error);
-                            }
-                        });
-                    }
-
-                    // Fetch data on page load
-                    fetchData('');
-
-                    // Fetch data on input change
-                    $('#searchinput').on('input', function () {
-                        const query = $(this).val();
-                        fetchData(query);
+                
+                
+                let btns = document.querySelectorAll(".btn");
+                
+                btns.forEach((btn) => {  
+                    btn.addEventListener('click', () => {
+                        btn.innerHTML = '<span class="loader-btn"></span>';
                     });
                 });
-
-
                 
-
-let btns = document.querySelectorAll(".btn");
-
-btns.forEach((btn) => {  
-    btn.addEventListener('click', () => {
-        btn.innerHTML = '<span class="loader-btn"></span>';
-    });
-});
-
             </script>
+            
             <script src="{% static 'js/script1.js' %}"></script>
-
-
 </body>
 
 </html>

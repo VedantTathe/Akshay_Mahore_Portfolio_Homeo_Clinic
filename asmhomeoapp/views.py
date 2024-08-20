@@ -19,21 +19,30 @@ def index(request):
     obj = models.MyClinic()
     res = obj.getClinicStatus()
     now = datetime.now()
-    current_hour = now.hour  # Get the current hour
+    current_hour = now.hour
+    
+    current_minute = now.minute
     print("Current Time:", now.time())
     print("Current Hour:", current_hour)
+    print("Current min:", current_minute)
 
     # Check if the clinic status is 'NOTSET'
     if res['clinic_status'] == 'NOTSET':
         
         # Update clinic status based on the current hour
-        if 10 <= current_hour < 14:
+        if 10 <= current_hour < 13:
             res['clinic_status'] = 'OPEN'
             print('Status is OPEN\n\n')
-        elif 14 <= current_hour < 19:
+        elif 13 <= current_hour < 18:
             res['clinic_status'] = 'CLOSED'
             print('Status is CLOSED\n\n')
+        elif current_hour == 18 and current_minute > 30:
+            res['clinic_status'] = 'OPEN'
+            print('Status is OPEN\n\n')
         elif 19 <= current_hour < 21:
+            res['clinic_status'] = 'OPEN'
+            print('Status is OPEN\n\n')
+        elif 21 == current_hour and current_minute < 30:
             res['clinic_status'] = 'OPEN'
             print('Status is OPEN\n\n')
         else:  # current_hour >= 21 or current_hour < 10
@@ -167,7 +176,7 @@ def changestatus(request, stat=None):
 
     obj = models.MyClinic()
     data = obj.changeStatus(stat)
-    return render(request,'admin.html',data)
+    return render(request,'admin2.html',data)
 
 
 @csrf_exempt
@@ -177,7 +186,7 @@ def updatenotice(request, stat=None):
         notice = request.POST.get('notice')
         
         if notice is None or notice.strip() == '':
-            return render(request, 'admin.html', {'err':'Notice Content is empty... or missing'})
+            return render(request, 'admin2.html', {'err':'Notice Content is empty... or missing'})
         
         # Process the notice here (e.g., update the database)
         print("Notice received:", notice)
@@ -187,7 +196,7 @@ def updatenotice(request, stat=None):
         data = obj.updateNotice(notice)
         
         # Render the response
-        return render(request, 'admin.html', data)
+        return render(request, 'admin2.html', data)
     
     # Handle GET or other methods if needed
     else:
@@ -203,6 +212,7 @@ def updatenotice(request, stat=None):
 
 @csrf_exempt
 def sendmessage(request):
+
     
 
 
@@ -213,3 +223,39 @@ def sendmessage(request):
     obj = models.MyClinic()
     data = obj.sendMessage(name,email,msg)
     return render(request,'index.html',data)
+
+
+ 
+@csrf_exempt
+def addpatient(request):
+    name = request.POST.get('name')
+    mobileno = request.POST.get('mobileno')
+    regno = request.POST.get('regno')
+
+    name=name.upper()
+
+    regno=regno.upper()
+    
+
+    obj = models.MyClinic()
+    data = obj.addPatient(name,mobileno,regno)
+    return render(request, 'admin2.html',data)   
+
+
+
+
+@csrf_exempt
+def delpatient(request,regno):
+    if regno == None:
+
+        return render(request, 'admin.html',{'RegNo = None ...! Error'})   
+
+    obj = models.MyClinic()
+    data = obj.delPatient(regno)
+    return render(request, 'admin.html',data)   
+
+@csrf_exempt
+def adminpage2(request):
+
+
+    return render(request, 'admin2.html')
