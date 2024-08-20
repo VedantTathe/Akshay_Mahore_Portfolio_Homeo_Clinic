@@ -1,4 +1,5 @@
 django
-
 pymongo
 dnspython
+django-mongodb-engine
+pyodbc
