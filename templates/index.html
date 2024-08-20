@@ -1,0 +1,758 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <style>
+        
+    #hero{
+        /* background: url('images/hero_img_landscape.jpg'); */
+        background: linear-gradient(rgba(172, 172, 172, 0.5), rgba(154, 154, 154, 0.5)), url('{% static "images/hero_img_landscape.png"%}'); */
+        width: 100%;
+        object-fit: contain;
+        background-size: cover;
+        background-repeat: no-repeat;
+        /* overflow: scroll; */
+        background-position: right;
+    }
+
+    
+
+@media only screen and (max-width: 750px) {
+    #hero {
+        background: linear-gradient(rgba(172, 172, 172, 0.5), rgba(154, 154, 154, 0.5)), url('{% static "images/hero_img_landscape.png" %}');
+        width: 100%;
+        object-fit: contain;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        
+    }
+}
+
+
+
+
+@media (min-height: 1700px) {
+    #hero {
+        background: linear-gradient(rgba(172, 172, 172, 0.5), rgba(154, 154, 154, 0.5)), url('{% static "images/hero_img_landscape.png" %}');
+        width: 100%;
+        object-fit: contain;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    #footer{
+        height: 10rem;
+        padding-bottom: 50rem;
+        background-color: white !important;
+    }
+
+}
+
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".mynavbar" data-bs-offset="0" class="smooth-scroll overflow-hidden">
+    <div class="loader-div">
+        <div class="loader"></div>
+    </div>
+    <div class="row d-flex w-100 h-100 overflow-hidden p-0 m-0">
+        <div id="left-column" class="d-none d-lg-block col-3 overflow-x-hidden p-0 m-0 h-100">
+            <nav id="navbar-desk" style="height:100vh; flex-wrap:nowrap;"
+                class="navbar d-flex flex-column mynavbar overflow-x-hidden overflow-y-scroll text-center">
+
+                <ul class="my-3">
+                    <img id="heroimg-desk" class="w-50" src="{% static 'images/profile-pic.png' %}" alt="profile_pic">
+                    <h3 id="heroname-desk">Akshay Mahore</h3>
+                </ul>
+                <ul id="loginbtn" class="">
+                    {% if request.session.user_role %}
+                    <span><a style="width:100px; background-color: rgb(54, 54, 54); color:white;" class="btn btn-secondary btn-learn mb-2" href="{% url 'adminpage' %}">AdminPage</a></span>
+                    <br/>
+                    <span><a style="width:100px; background-color: rgb(54, 54, 54); color:white;" class="btn btn-secondary btn-learn" href="{% url 'logoutpage' %}">Logout</a></span>
+
+                    {% else %}
+                        <span><a style="width:100px; background-color: rgb(54, 54, 54); color:white;" class="btn btn-secondary btn-learn" target="_blank" href="{% url 'loginpage' %}">Login</a></span>
+                    {% endif %}
+                </ul>
+                <ul id="" class="">
+                    <span class="nav-contact-desk"><i class="fa-solid fa-envelope"></i> asmhomeo@gmail.com</span>
+                    <br>
+                    <span class="nav-contact-desk"><i class="fa-solid fa-phone"></i> 9922332719</span>
+                </ul>
+                <ul id="nav-links-list-desk" class="navbar-nav list-unstyled nav d-flex flex-column m-0 p-0">
+                    <li class="nav-item m-1"><a class="nav-link active-link" href="#hero">INTRODUCTION</a></li>
+                    <li class="nav-item m-1"><a class="nav-link" href="#about-me">ABOUT</a></li>
+                    <li class="nav-item m-1"><a class="nav-link" href="#education">EDUCATION</a></li>
+                    <li class="nav-item m-1"><a class="nav-link" href="#experiences">EXPRIENCES</a></li>
+                    <li class="nav-item m-1"><a class="nav-link" href="#development">REVIEWS</a></li>
+                    <li class="nav-item m-1"><a class="nav-link" href="#contact-me">CONTACT ME</a></li>
+                </ul>
+                <ul id="contact-icons-desk" class="mt-2 contact-icons">
+                    <span class="icon" style="font-size: larger;"><a target="_blank"
+                            href="https://www.linkedin.com/in/vedant-tathe-04b5a2262/"><i
+                                class="fa-brands fa-linkedin"></i></a></span>
+                    <span class="icon" style="font-size: larger;"><a target="_blank"
+                            href="https://github.com/VedantTathe"><i class="fa-brands fa-github"></i></a></span>
+                    <span class="icon" style="font-size: larger;"><a target="_blank"
+                            href="https://www.youtube.com/@vedant_tathe"><i class="fa-brands fa-youtube"></i></a></span>
+                    <span class="icon" style="font-size: larger;"><a target="_blank"
+                            href="https://www.instagram.com/vedant_tathe/"><i
+                                class="fa-brands fa-instagram"></i></a></span>
+                </ul>
+            </nav>
+        </div>
+
+        <div id="right-column" class="col-12 col-lg-9 p-0 m-0 overflow-x-hidden  overflow-y-scroll  position-relative">
+            <div class="h-100 m-0" style="transition: 0.5s;">
+                <nav id="navbar-mob" class="navbar d-flex flex-column mynavbar text-center justify-content-start">
+
+                    <ul class="mt-5">
+                        <img id="heroimg" class="w-50" src="{% static 'images/profile-pic.png' %}" alt="profile_pic">
+                        <h3 id="heroname">Akshay Mahore</h3>
+                    </ul>
+                    <ul id="loginbtn" class="">
+                        {% if request.session.user_role %}
+                        <span><a style="width:100px; background-color: rgb(54, 54, 54); color:white;" class="btn btn-secondary btn-learn mb-2" href="{% url 'adminpage' %}">AdminPage</a></span>
+                        <br/>
+                        <span><a style="width:100px; background-color: rgb(54, 54, 54); color:white;" class="btn btn-secondary btn-learn" href="{% url 'logoutpage' %}">Logout</a></span>
+    
+                        {% else %}
+                            <span><a style="width:100px; background-color: rgb(54, 54, 54); color:white;" class="btn btn-secondary btn-learn" target="_blank" href="{% url 'loginpage' %}">Login</a></span>
+                        {% endif %}                    
+                    </ul>
+                    <ul class="nav-contact">
+                        <span><i class="fa-solid fa-envelope"></i> asmhomeo@gmail.com</span>
+                        <br>
+                        <span><i class="fa-solid fa-phone"></i> 9922332719</span>
+                    </ul>
+                    <ul id="nav-links-list" class="navbar-nav list-unstyled nav d-flex flex-column m-0 p-0">
+                        <li class="nav-item m-2"><a class="nav-link active-link" href="#hero">INTRODUCTION</a></li>
+                        <li class="nav-item m-2"><a class="nav-link" href="#about-me">ABOUT</a></li>
+                        <li class="nav-item m-2"><a class="nav-link" href="#education">EDUCATION</a></li>
+                        <li class="nav-item m-2"><a class="nav-link" href="#experiences">EXPRIENCES</a></li>
+                        <li class="nav-item m-2"><a class="nav-link" href="#development">REVIEWS</a></li>
+                        <li class="nav-item m-2"><a class="nav-link" href="#contact-me">CONTACT ME</a></li>
+                    </ul>
+                    <ul id="contact-icons" class="mt-2 contact-icons">
+                        <span class="icon" style="font-size: larger;"><a target="_blank"
+                                href="https://www.linkedin.com/in/vedant-tathe-04b5a2262/"><i
+                                    class="fa-brands fa-linkedin"></i></a></span>
+                        <span class="icon" style="font-size: larger;"><a target="_blank"
+                                href="https://github.com/VedantTathe"><i class="fa-brands fa-github"></i></a></span>
+                        <span class="icon" style="font-size: larger;"><a target="_blank"
+                                href="https://www.youtube.com/@vedant_tathe"><i
+                                    class="fa-brands fa-youtube"></i></a></span>
+                        <span class="icon" style="font-size: larger;"><a target="_blank"
+                                href="https://www.instagram.com/vedant_tathe/"><i
+                                    class="fa-brands fa-instagram"></i></a></span>
+                    </ul>
+                </nav>
+
+                {% if notice != 'NOTSET' and notice != None %}
+                <div class="notice m-0 text-center shadow p-0" style="background-color: #ffa2a2; border:2px solid white">
+
+                    <marquee>
+                        <h5>{{notice}}</h5>
+                    </marquee>
+                </div>
+
+                {% endif %}
+
+                
+
+                {% if message %}
+        
+                        <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
+                            <h5>{{ message }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                {%elif err%}
+                    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
+                        <h5>{{ err }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+                
+                <!-- <div id="hero" class="h-100 position-relative"> -->
+                <div id="hero" class="section slider h-100 w-100">
+                    
+                    <div class="slides m-0 mt-0" style="transition: 0.5s; height:60%">
+                        <div id="nav-btn" class="d-lg-none m-4" style="transition: 0.5s;">
+                            <i class="fa-solid fa-bars " style="font-size: xx-large;"></i>
+                        </div>
+                        <div id="nav-btn-close" class="d-lg-none m-4" style="transition: 0.5s;">
+
+                            <i class="fa-solid fa-xmark" style="font-size: xx-large;"></i>
+                        </div>
+
+                        <!-- <div class="mobile-logo d-lg-none " style="transition: 0.5s;"> -->
+                        <img id="heroimgmob" class="mobile-logo-img d-lg-none mt-3 me-3"
+                            src="{% static 'images/profile-pic.png' %}" alt="profile_pic">
+
+                        <!-- </div> -->
+
+                        <div class="slide d-flex ms-4 flex-column justify-content-center">
+                            <h1>Welcome To </h1>
+                            <h1>Mahore Homeo Clinic</h1>
+                            <p><a class="btn btn-secondary btn-learn my-3"
+                                    href="#location">Address <i
+                                        class="fa-solid fa-file-arrow-down"></i></a></p>
+                            
+
+                        </div>
+                        <div class="slide d-flex ms-4 flex-column justify-content-center">
+                            <h1>Hi!</h1>
+                            <h1>I'm Akshay</h1>
+                            <p><a class="btn btn-secondary btn-learn my-3"
+                                    href="#education">Education <i class="fa-solid fa-file-arrow-down"></i></a></p>
+                            
+
+                        </div>
+                        <div class="slide d-flex ms-4 flex-column justify-content-center">
+                            <h1>You Can</h1>
+                            <h1>Contact Me</h1>
+                            <p><a class="btn btn-secondary btn-learn my-3"
+                                    href="#contact-me">Contacts <i
+                                        class="fa-solid fa-file-arrow-down"></i></a>
+                                    </p>
+                            
+
+                        </div>
+                        <div class="asm-status" style="color:black;">
+                            <h4><strong>Clinic Timings</strong></h5>
+                            <h5>Morning: 10 AM To 2 PM</h5>
+                            <h5>Evening: 7 PM To 9 PM</h5>
+                            <h4 class="position-relative flex-wrap d-flex d-md-block">Mahore Homeo Clinic is Currently &nbsp; <span class="animate-status mt-4 mt-md-0"><strong>{{clinic_status}}</strong></span></h4>
+                        </div>
+                        <div class="slider-control mt-4 ms-3 p-0 d-flex flex-column position-absolute">
+                            <ul class="list-unstyled">
+                                <li class="slider-control-li m-1"><a href="#">1</a></li>
+                                <li class="slider-control-li m-1"><a href="#">2</a></li>
+                                <li class="slider-control-li m-1"><a href="#">3</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- </div> -->
+                <div id="about-me" class="section container my-3 head-narrow-content">
+                    <div id="about1" class="row">
+                        <div class="col-md-12">
+                            <div class="row row-bottom-padded-sm">
+                                <div class="col-md-12">
+                                    <div class="about-desc"><span class="heading-meta">About Me</span>
+                                        <h2 class="head-heading mt-3">Who Am I?</h2>
+                                        <div class="container">
+                                            <p>I am Dr. Akshay Mahore, a Homeopathy doctor from MyCollege of Medicine. I
+                                                am passionate about exploring new advancements in homeopathy and often
+                                                amazed by the progress we as a human species have made in recent years!
+                                            </p>
+                                            <p class="">I provide <strong>homeopathic treatment</strong> and
+                                                <strong>holistic health consultations</strong> at my clinic. My services
+                                                focus on <strong>natural healing</strong> and <strong>preventative
+                                                    care</strong>. I am interested in <strong>Holistic Health</strong>,
+                                                <strong>Alternative Medicine</strong>, and <strong>Integrative
+                                                    Healthcare</strong>.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="about2" class="my-4 head-narrow-content">
+                        <div class="row mb-5">
+                            <div class="col-md-6 mb-5"><span class="heading-meta">What I do?</span>
+                                <h2 class="head-heading mt-3">Here are some of my expertise</h2>
+                            </div>
+                        </div>
+                        <div class="services-box row m-2 m-md-0 d-flex justify-content-center">
+                            <div class="card col-md-4 text-center shadow-lg m-1 m-lg-2 position-relative my-5"
+                                style="border-bottom: 2px solid #2c98f0;">
+                                <div class="card-body services color-1">
+                                    <span class="service-icon" style="background: #2c98f0;"><i
+                                            class="fa-solid fa-desktop"></i></span>
+                                    <div class="desc mt-5">
+                                        <h4 class="card-title ">Web Development</h4>
+                                        <p>I have experience building websites and using JavaScript, PHP, Django,
+                                            Bootstrap, JSP</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card col-md-3 text-center shadow-lg m-1 m-lg-2 position-relative my-5"
+                                style="border-bottom: 2px solid #f9bf3f;">
+                                <div class="card-body services color-2">
+                                    <span class="service-icon" style="background: #f9bf3f;"><i
+                                            class="fa-solid fa-database"></i></span>
+                                    <div class="desc mt-5">
+                                        <h4 class="card-title ">AI and ML</h4>
+                                        <p>I am exploring the domain, learning various python libraries, AI tools and ML
+                                            algorithms</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card col-md-4 text-center shadow-lg m-1 m-lg-2 position-relative my-5"
+                                style="border-bottom: 2px solid #2fa499;">
+                                <div class="card-body services color-3">
+                                    <span class="service-icon" style="background: #2fa499;"><i
+                                            class="fa-regular fa-lightbulb"></i></span>
+                                    <div class="desc mt-5">
+                                        <h4 class="card-title">Data Structures &amp; Algorithms</h4>
+                                        <p>As coming from the CS background, I have good grasp over fundamental concepts
+                                            of DSA</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="education" class="section container my-5 head-narrow-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="head-narrow-content">
+                                <div class="row mt-2">
+                                    <div class="about-desc  col-md-6 mt-5"><span class="heading-meta ">Timeline</span>
+                                        <h2 class="head-heading mt-4 ">Education</h2>
+                                    </div>
+                                </div>
+                                <div class="container row mt-5">
+                                    <div class="col-md-12 position-relative">
+                                        <div class="timeline-centered">
+                                            <div class="overlay">
+                                                <article id="edu-article1" class="timeline-entry">
+                                                    <div class="timeline-entry-inner">
+                                                        <div class="timeline-icon p-3 color-2"><i
+                                                                class="fa-solid fa-pencil"></i>
+                                                        </div>
+                                                        <div
+                                                            class="container col-md-11 m-5 mt-1 timeline-label p-3 rounded">
+                                                            <h3>Dakshin Kesri Muni Mishrilalji Homoeopathic
+                                                                Medical College, Aurangabad<span
+                                                                    class="heading-meta2">(2024 -
+                                                                    2027)</span></h3>
+                                                            <h5>Doctor of Medicine <strong>(MD)</strong> in Homeopathy
+                                                            </h5>
+                                                            <p>To further specialize in my field, I completed my MD in
+                                                                Homeopathy at DKMM in Aurangabad. This advanced degree
+                                                                equipped me with deeper insights and expertise in
+                                                                homeopathic medical practices.</p>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                                <article id="edu-article2" class="timeline-entry"
+                                                    data-animate-effect="fadeInTop">
+                                                    <div class="timeline-entry-inner">
+                                                        <div class="timeline-icon p-3 color-4"><i
+                                                                class="fa-solid fa-pencil"></i>
+                                                        </div>
+                                                        <div class="container col-md-11 m-5 timeline-label p-3 rounded">
+                                                            <h3>Panchsheel Homoeopathic Medical College<span
+                                                                    class="heading-meta2">(2021 - 2024)</span></h3>
+                                                            <h5>Bachelor of Homeopathic Medicine and Surgery (BHMS)</h5>
+                                                            <p>I pursued my undergraduate studies in homeopathy at P H M
+                                                                C Khamgaon, where I earned my BHMS degree. This program
+                                                                provided me with comprehensive knowledge and training in
+                                                                homeopathic medicine.</p>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                                <article id="edu-article3" class="timeline-entry">
+                                                    <div class="timeline-entry-inner">
+                                                        <div class="timeline-icon p-3 color-3"><i
+                                                                class="fa-solid fa-pencil"></i>
+                                                        </div>
+                                                        <div
+                                                            class="container col-md-11 m-5 mb-1 timeline-label p-3 rounded">
+                                                            <h3>R. K. High School and Junior College, Pulgaon
+                                                                <span class="heading-meta2">(2015 - 2021)</span>
+                                                            </h3>
+                                                            <h5>Secondary and Higher Secondary Education</h5>
+                                                            <p>I continued my education at R. K. High School and Junior
+                                                                College in Pulgaon, where I completed my secondary and
+                                                                higher secondary education. This period helped me excel
+                                                                in my studies and prepare for a career in medicine.</p>
+                                                        </div>
+                                                    </div>
+                                                </article>
+
+                                                <article id="edu-article3" class="timeline-entry">
+                                                    <div class="timeline-entry-inner">
+                                                        <div class="timeline-icon p-3 color-4"><i
+                                                                class="fa-solid fa-pencil"></i>
+                                                        </div>
+                                                        <div
+                                                            class="container col-md-11 m-5 mb-1 timeline-label p-3 rounded">
+                                                            <h3>Pulgaon Cotton Mills Prathamik School, Pulgaon
+                                                                <span class="heading-meta2">(2015 - 2021)</span>
+                                                            </h3>
+                                                            <h5>Primary Education</h5>
+                                                            <p>
+                                                                I began my educational journey at Pulgaon Cotton Mills
+                                                                Prathamik School in Pulgaon, where I developed a strong
+                                                                foundation in primary education.</p>
+
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                                <article id="edu-article4" class="timeline-entry timeline-begin mt-0">
+                                                    <div class="timeline-entry-inner">
+                                                        <div class="timeline-icon color-none"></div>
+                                                    </div>
+                                                </article>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% comment %} <div id="experiences" class="section container my-5 head-narrow-content">
+                    <div class="row">
+                        <div class="col-md-12 mt-5">
+                            <div class="container">
+                                <div class="section-title mb-5">
+                                    <h2 class="head-heading">EXPRIENCES</h2>
+                                    <p>I am experienced homeopathy doctor specializing in holistic health and natural
+                                        healing, provides personalized care at my clinic</p>
+                                </div>
+                                <div id="program-lang-sec1" class="row skills-content">
+                                    <div class="col-lg-4 col-sm-12">
+                                        <h3>Programming Languages :</h3>
+                                    </div>
+                                    <div class="languages1 col-lg-2 col-sm-6 language-logo">
+                                        <img class="img-fluid rounded mx-auto d-block" src="images/C.png" alt="C"
+                                            title="C"><br>
+                                    </div>
+                                    <div class="languages1 col-lg-2 col-sm-6 language-logo">
+                                        <img class="img-fluid rounded mx-auto d-block" src="images/C++.png" alt="C++"
+                                            title="C++"><br>
+                                    </div>
+                                    <div class="languages1 col-lg-2 col-sm-6 language-logo">
+                                        <img class="img-fluid rounded mx-auto d-block" src="images/java.png" alt="Java"
+                                            title="Java"><br>
+                                    </div>
+                                    <div class="languages1 col-lg-2 col-sm-6 language-logo">
+                                        <img class="img-fluid rounded mx-auto d-block" src="images/python.png"
+                                            title="Python"><br>
+                                    </div>
+                                </div><br><br>
+                                <div id="program-lang-sec2" class="row skills-content">
+                                    <div class="col-lg-4 col-sm-12">
+                                        <h3>Web Technologies :</h3>
+                                    </div>
+                                    <div class="languages2 col-lg-3 col-sm-6 language-logo">
+                                        <img class="img-fluid rounded mx-auto d-block" src="images/html.png"
+                                            title="HTML"><br>
+                                    </div>
+                                    <div class="languages2 col-lg-3 col-sm-6 language-logo">
+                                        <img class="img-fluid rounded mx-auto d-block" src="images/css.png"
+                                            title="CSS"><br>
+                                    </div>
+                                    <div class="languages2 col-lg-2 col-sm-6 language-logo">
+                                        <img class="img-fluid rounded mx-auto d-block" src="images/javascript.png"
+                                            title="Javascript"><br>
+                                    </div>
+                                </div><br><br>
+                                <div class="row skills-content">
+                                    <div class="col-lg-4 col-sm-12"></div>
+                                    <div class="languages2 col-lg-3 col-sm-6 language-logo">
+                                        <img class="img-fluid rounded mx-auto d-block" src="images/php.png"
+                                            title="php"><br>
+                                    </div>
+                                    <div class="languages2 col-lg-3 col-sm-6 language-logo">
+                                        <img class="img-fluid rounded mx-auto d-block" src="images/django.png"
+                                            title="django"><br>
+                                    </div>
+                                    <div class="languages2 col-lg-2 col-sm-6 language-logo">
+                                        <img class="img-fluid rounded mx-auto d-block" src="images/jsp.png" title="jsp"
+                                            height="130px" width="130px"><br>
+                                    </div>
+                                </div><br><br>
+                                <div id="program-lang-sec3" class="row skills-content">
+                                    <div class="languages3 col-lg-4 col-sm-12">
+                                        <h3>Databases :</h3>
+                                    </div>
+                                    <div class="languages3 col-lg-4 col-sm-6 language-logo">
+                                        <img class="img-fluid rounded mx-auto d-block" src="images/mongodb.png"
+                                            title="MongoDB"><br>
+                                    </div>
+                                    <div class="languages3 col-lg-4 col-sm-6 language-logo">
+                                        <img class="img-fluid rounded mx-auto d-block" src="images/sql.png"
+                                            title="SQL"><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> {% endcomment %}
+
+                <div id="location" class="section container my-5 head-narrow-content">
+                    <div class="row">
+                        <div class="col-md-12 mt-5">
+                            <div class="container">
+                                <div class="section-title mb-5">
+                                    <h2 class="head-heading">LOCATION</h2>
+                                    <p>My Clinic Location is given in below section</p>
+                                </div>
+                                <div class="map col-12  ">
+
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d465.91732997172466!2d77.75076078294417!3d20.898691141809838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd6a50b527dd14d%3A0x7ec0286f355242cd!2sMAHORE%20HOMOEO%20CLINIC!5e0!3m2!1sen!2sin!4v1723885388816!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="contact-me" class="section container my-3 head-narrow-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="head-narrow-content">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h2 class="head-heading my-3 text-center text-md-start">Contact Me</h2>
+                                    </div>
+                                </div>
+                                <div class="row position-relative h-100">
+                                    <div
+                                        class="col-md-4 ms-md-4 links d-flex flex-column justify-content-center align-items-center">
+                                        <p><span><i class="fa-solid fa-envelope"></i> tathevedant70@gmail.com</span>
+                                            <br>
+                                            <span><i class="fa-solid fa-phone"></i> 9112877202</span>
+                                        </p>
+
+                                        <p class="contact-icons"><span class="" style="font-size: larger;"><a
+                                                    target="_blank"
+                                                    href="https://www.linkedin.com/in/vedant-tathe-04b5a2262/"><i
+                                                        class="fa-brands fa-linkedin"></i></a></span>
+                                            <span class="" style="font-size: larger;"><a target="_blank"
+                                                    href="https://github.com/VedantTathe"><i
+                                                        class="fa-brands fa-github"></i></a></span>
+                                            <span class="" style="font-size: larger;"><a target="_blank"
+                                                    href="https://www.youtube.com/@vedant_tathe"><i
+                                                        class="fa-brands fa-youtube"></i></a></span>
+                                            <span class="" style="font-size: larger;"><a target="_blank"
+                                                    href="https://www.instagram.com/vedant_tathe/"><i
+                                                        class="fa-brands fa-instagram"></i></a></span>
+                                        </p>
+                                        <p><a class="btn btn-secondary btn my-3 text-white" type="pdf" target="_blank"
+                                                href="documents/Vedant_Tathe_Resume_Latest.pdf">Download Resume <i
+                                                    class="fa-solid fa-file-arrow-down"></i></a></p>
+
+                                    </div>
+                                    <div class="col-md-7">
+                                        <form action="{% url 'sendmessage' %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="form-group m-2">
+                                                <label for="exampleInputName1">Name</label>
+                                                <input name="uname" type="text" class="form-control" id="exampleInputName"
+                                                    aria-describedby="NamelHelp" required placeholder="Enter Name">
+                                            </div>
+                                            <div class="form-group m-2">
+                                                <label for="exampleInputEmail1">Email Address</label>
+                                                <input name="email" type="email" class="form-control" id="exampleInputEmail1"
+                                                    aria-describedby="emailHelp" required placeholder="Enter Email">
+                                            </div>
+                                            <div class="form-group m-2">
+                                                <label for="exampleInputMessage1">Message</label>
+                                                <textarea name="msg" rows="5" type="textarea" class="form-control"
+                                                    id="exampleInputMessage1" required
+                                                    placeholder="Enter Message"></textarea>
+                                            </div>
+                                            <div class="d-flex justify-content-center w-100">
+
+                                                <button type="submit"
+                                                    class="btn btn-secondary w-100 text-center m-auto">Submit</button>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="footer" class="w-100 m-0 bg-danger">
+                    <p class="text-center m-0 links">&copy; Developed By <span><a class="" target="_blank" href="https://vedanttathe.netlify.app"> Vedant Tathe</a></span></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c8a0e865fe.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+        integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+        
+let currentIndex = 0;
+let myvar = 1;
+
+const sliderControlItems = document.querySelectorAll('.slider-control-li');
+if(sliderControlItems.length >= 1)
+{
+    sliderControlItems[0].style.backgroundColor = 'rgb(59, 88, 255)';
+}
+
+function showSlide(index,a) {
+    const slide = document.querySelectorAll('.slide')
+    const totalSlides = slide.length;
+
+    if (index >= totalSlides) {
+        currentIndex = 0;
+    } else if (index < 0) {
+        currentIndex = totalSlides - 1;
+    } else {
+        currentIndex = index;
+    }
+
+    const offset = -currentIndex * 100;
+    var t1 = gsap.timeline();
+    slide.forEach(element => {
+        if(a==1){
+            t1.to(element,{
+                y:offset+'%',
+                duration:0.2,
+            });
+            
+        }
+        else{
+
+            element.style.transform = `translateY(${offset}%)`;
+        }
+    });
+
+    if(a==1){
+
+        gsap.from('.slide h1',{
+            delay:0.6,
+            opacity:0,
+            scale:0.2,
+            x:300,
+            
+        });
+
+        gsap.to('.slide h1',{
+            delay:1,
+            opacity:1,
+        });
+        
+    }
+    
+    sliderControlItems.forEach((elem, index) => {
+        elem.style.backgroundColor = 'rgb(40, 40, 40)';
+    });
+
+    if(sliderControlItems.length>=currentIndex)
+    {
+
+        sliderControlItems[currentIndex].style.backgroundColor = 'rgb(59, 88, 255)';
+    }
+}
+
+function changeImg()
+{
+    const heroElement = document.querySelector("#hero");
+
+    gsap.to(heroElement, {
+        opacity: 0.5,
+        duration: 0.3,
+        onComplete: () => {
+            if(heroElement.style.background.includes('hero_img_cabin.png'))
+            {
+                
+                heroElement.style.background = "linear-gradient(rgba(172, 172, 172, 0.5), rgba(154, 154, 154, 0.5)), url('{% static "images/hero_img_landscape.png" %}')"
+                heroElement.style.backgroundRepeat = 'no-repeat'
+                heroElement.style.backgroundPosition = 'center'
+                heroElement.style.objectFit = 'contain'
+                heroElement.style.backgroundSize = 'cover'
+            }
+            else
+            {
+                heroElement.style.background = "linear-gradient(rgba(172, 172, 172, 0.5), rgba(154, 154, 154, 0.5)), url('{% static "images/hero_img_cabin.png" %}')"
+                heroElement.style.backgroundRepeat = 'no-repeat'
+                heroElement.style.backgroundPosition = 'right'
+                heroElement.style.objectFit = 'contain'
+                heroElement.style.backgroundSize = 'cover'
+            }
+            // Fade in the new image
+            gsap.to(heroElement, {
+                opacity: 1,
+                duration: 0.5
+            });
+        }
+    });
+
+    
+}
+
+function nextSlide(a) {
+    showSlide(currentIndex + 1,a);
+
+
+    
+    changeImg();
+    
+}
+
+function prevSlide() {
+    showSlide(currentIndex - 1);
+    
+    changeImg();
+}
+
+// Auto-slide functionality (optional)
+const myinterval = setInterval(() => {
+    nextSlide(myvar);
+}, 3000); // Change slide every 3 seconds
+
+
+setTimeout(() => {
+    clearInterval(myinterval);
+    myvar = 0;
+    console.log("Auto-slide stopped"); // This is optional for debugging purposes
+  }, 25000);
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') {
+        nextSlide();
+    } else if (event.key === 'ArrowLeft') {
+        prevSlide();
+    }
+    
+  clearInterval(myinterval);
+});
+
+
+sliderControlItems.forEach((elem, index) => {
+    elem.addEventListener('click', () => {
+        showSlide(index);
+        console.log(index);
+        clearInterval(myinterval);
+    });
+});
+
+    </script>
+    
+</body>
+
+</html>

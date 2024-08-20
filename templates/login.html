@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{% static 'components/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'components/css/responsive_css.css' %}">
+
+    <style>
+        .alert h3 {
+            font-size: 1.2rem;
+            width: fit-content;
+            margin: auto;
+        }
+
+        .mybtn {
+            color: white;
+            border: 1px solid white;
+            transition: all ease 0.5s;
+            background-color: rgb(54,54,54);
+        }
+
+        .mybtn:hover {
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+            transform: translateY(-5px);
+        }
+
+        .mybtn{
+            color:white;
+        }
+
+        input {
+            margin: 10px 0;
+
+        }
+    </style>
+</head>
+
+<body>
+    {% if message %}
+        
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <h3>{{ message }}</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {%elif err%}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <h3>{{ err }}</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+
+    <div class="d-flex align-items-center justify-content-center mt-5 mb-5" style="width: 100vw;">
+        <div class="card container shadow p-0 col-10 col-md-6" style="background-color: #e5cdffbf;">
+            <div class="rounded-top-2 text-center" style="background-color: rgb(54,54,54);">
+                <h5 class="card-title p-2 text-white">Login Here</h5>
+            </div>
+            <div class="card-body text-center">
+                <form action="{% url 'loginpage' %}" method="post" class="row d-flex flex-column justify-content-center align-items-center">
+                    {% csrf_token %}
+                    <div class="container d-flex flex-column justify-content-center align-items-center col-md-8 col-12">
+                        <div class="d-md-flex justify-content-center align-items-center gap-5 col-12">
+                            <label class="form-label col-md-4 col-12">Username</label>
+                            <input class="form-control col-md-8 col-12" type="text" name="uname" id="uname"
+                                placeholder="Your Username" required>
+                        </div>
+
+                        <div class="d-md-flex justify-content-center align-items-center gap-5 col-12">
+                            <label class="form-label col-md-4 col-12">Password</label>
+                            <input class="form-control col-md-8 col-12" type="password" name="password" id="password"
+                                placeholder="Enter Password Here" required>
+                        </div>
+                    </div>
+                    <p class="card-text m-0 col-10 pt-3 pb-1"><a href="{% url 'forgotPassword' %}" class="nav-link text-primary text-black">Click Here if you (admin) forgot the password</a></p>
+                    <p class="card-text m-0 col-10 p-2"><strong>This Login Page is Only for Admin... Normal Users Not Allowed</strong></p>
+
+                    <div class="col-12">
+                        <button type="submit" id="loginbtn" class="mybtn btn px-4" style="border: 1px solid black;">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
