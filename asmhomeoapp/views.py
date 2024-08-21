@@ -12,19 +12,31 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from datetime import datetime, timedelta
 from django.views.decorators.csrf import csrf_exempt
+from pytz import timezone
+import pytz
+
 
 
 @csrf_exempt
 def index(request):
     obj = models.MyClinic()
     res = obj.getClinicStatus()
-    now = datetime.now()
-    current_hour = now.hour
     
-    current_minute = now.minute
-    print("Current Time:", now.time())
-    print("Current Hour:", current_hour)
-    print("Current min:", current_minute)
+    # Get current UTC time
+    utc_time = datetime.utcnow().replace(tzinfo=pytz.utc)
+
+    # Convert UTC time to Indian Standard Time (IST)
+    india_time = utc_time.astimezone(timezone('Asia/Kolkata'))
+
+    # Extract hour and minute from IST
+    current_hour = india_time.hour
+    current_minute = india_time.minute
+
+    # Print the IST time and its components
+    print('India time:', india_time)
+    print("Current Hour in IST:", current_hour)
+    print("Current Minute in IST:", current_minute)
+
 
     # Check if the clinic status is 'NOTSET'
     if res['clinic_status'] == 'NOTSET':
@@ -49,7 +61,7 @@ def index(request):
             res['clinic_status'] = 'CLOSED'
             print('Status is CLOSED\n\n')
 
-        res['time'] = now.time().strftime('%H:%M:%S')  # Format the time as a string
+        # res['time'] = now.time().strftime('%H:%M:%S')  # Format the time as a string
 
     elif res['clinic_status'] == 'CLOSED':
         date_updated_str = res.get('date_updated', '')
