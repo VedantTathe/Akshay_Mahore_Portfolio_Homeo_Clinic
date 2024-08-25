@@ -2,11 +2,6 @@ django
 pymongo
 dnspython
 django-mongodb-engine
-<<<<<<< HEAD
 pyodbc 
 pytz
 djangorestframework
-=======
-pyodbc
-pytz
->>>>>>> 296a6c2b1764a926da07d49b0c50f059aec31f4f
