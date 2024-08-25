@@ -14,7 +14,8 @@ from datetime import datetime, timedelta
 from django.views.decorators.csrf import csrf_exempt
 from pytz import timezone
 import pytz
-
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
 @csrf_exempt
@@ -270,4 +271,22 @@ def delpatient(request,regno):
 def adminpage2(request):
 
 
+
     return render(request, 'admin2.html')
+
+
+
+
+
+from bson.json_util import dumps
+
+
+@api_view(['POST'])
+def allusers_data(request):
+    data=None
+    if request.POST.get('code')=="secret-code":
+        obj = models.MyClinic()
+        data = obj.getAllData()
+        data = dumps(data)
+        return Response({'status':200,'payload':data,'message':'success'})
+    return Response({'status':404,'payload':data,'message':'success'})

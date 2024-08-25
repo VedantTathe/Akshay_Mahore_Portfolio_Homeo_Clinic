@@ -2,4 +2,6 @@ django
 pymongo
 dnspython
 django-mongodb-engine
-pyodbc
+pyodbc 
+pytz
+djangorestframework

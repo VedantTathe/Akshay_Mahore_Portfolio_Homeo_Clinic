@@ -198,6 +198,20 @@ class MyClinic():
 
         return data
 
+    def getAllData(self):
+        client = MongoClient(constring)  # Make sure 'constring' is defined correctly
+
+        db = client['Clinic']
+        coll = db['Asmhomeo']
+        cursor = coll.find(
+            {"Name": {"$exists": True}},  # Filter to get documents where the "Name" field exists
+            {"_id": 0, "RegNo":0}  # Projection to exclude these fields
+        )
+        data = list(cursor)  # Convert cursor to a list
+
+        return data
+
+
 
 
     

@@ -33,4 +33,5 @@ urlpatterns = [
     path('addpatient/', views.addpatient, name='addpatient'),
     path('delpatient/<str:regno>/', views.delpatient, name='delpatient'),
     path('adminpage2', views.adminpage2, name='adminpage2'),
+    path('allusers_data', views.allusers_data, name='allusers_data'),
 ]
