@@ -281,18 +281,8 @@ def adminpage2(request):
 from bson.json_util import dumps
 
 
-@api_view(['GET'])
-def allusers_data(request):
-    data=None
-    obj = models.MyClinic()
-    data = obj.getAllData()
-    data = dumps(data)
-    return Response({'status':200,'payload':data,'message':'success'})
-    
-
-
 @api_view(['POST'])
-def allusers_datapost(request):
+def allusers_data(request):
     data=None
     if request.POST.get('code')=="secret-code":
         obj = models.MyClinic()
@@ -300,3 +290,4 @@ def allusers_datapost(request):
         data = dumps(data)
         return Response({'status':200,'payload':data,'message':'success'})
     return Response({'status':404,'payload':data,'message':'error'})
+    
