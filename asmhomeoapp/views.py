@@ -18,6 +18,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 
+
 @csrf_exempt
 def index(request):
     obj = models.MyClinic()
@@ -98,14 +99,12 @@ def index(request):
                 obj = models.MyClinic()
                 obj.changeStatus('NOTSET')
 
-                res['time'] = now.time().strftime('%H:%M:%S')  # Format the time as a string
-
-
+               
             else:
                 print("Today's date is not greater than the date updated.")
                 res['status_changed'] = False
 
-    print(res['notice'])
+    print(res)
 
     return render(request, 'index.html', res)
 
@@ -273,6 +272,127 @@ def adminpage2(request):
 
 
     return render(request, 'admin2.html')
+
+
+@csrf_exempt
+def search_section(request):
+
+
+
+    return render(request, 'search.html')
+
+
+@csrf_exempt
+def change_data(request):
+
+
+
+    return render(request, 'change_data.html')
+
+
+@csrf_exempt
+def sendsms(request):
+
+
+
+    return render(request, 'sendsms.html')
+
+
+@csrf_exempt
+def change_heroheading(request, stat=None):
+    query = "NOTSET"
+    if stat:
+        query="NOTSET"
+    else:
+        query = request.POST.get('message')
+        print(query)
+
+    print(stat)
+    
+
+    obj = models.MyClinic()
+    data = obj.changeHeroHeading(query)
+    return render(request,'change_data.html',data)
+
+
+@csrf_exempt
+def change_clinictimings(request, stat=None):
+    query = "NOTSET"
+    if stat:
+        query="NOTSET"
+    else:
+        query = request.POST.get('message')
+        print(query)
+
+    print(stat)
+    
+
+    obj = models.MyClinic()
+    data = obj.changeClinicTimings(query)
+    return render(request,'change_data.html',data)
+
+
+
+@csrf_exempt
+def change_aboutdata(request, stat=None):
+    query = "NOTSET"
+    if stat:
+        query="NOTSET"
+    else:
+        query = request.POST.get('message')
+        print(query)
+
+    print(stat)
+    
+
+    obj = models.MyClinic()
+    data = obj.changeAboutData(query)
+    return render(request,'change_data.html',data)
+
+
+
+@csrf_exempt
+def change_contactdata(request):
+    mobileno = request.POST.get('mobileno')
+    email = request.POST.get('email')
+    
+
+    obj = models.MyClinic()
+    data = obj.changeContactData(mobileno,email)
+    return render(request,'change_data.html',data)
+
+
+ 
+ 
+@csrf_exempt
+def read_messages(request):   
+
+    obj = models.MyClinic()
+    data = obj.readMessages()
+
+    mydic={}
+    mydic['data'] = data
+
+    return render(request,'read_messages.html',mydic)
+
+ 
+@csrf_exempt
+def delmsg(request, stat):
+    
+    obj = models.MyClinic()
+    data = obj.delMsg(stat)
+
+    t = obj.readMessages()
+    data.update({'data':t})
+
+    
+    return render(request,'read_messages.html',data)
+
+
+
+
+
+
 
 
 

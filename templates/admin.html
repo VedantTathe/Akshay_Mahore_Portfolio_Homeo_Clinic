@@ -33,6 +33,19 @@ animation: rotation 1s linear infinite;
     transform: rotate(360deg);
 }
 } 
+
+
+.box{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    color: white;
+    font-weight: 700;
+    font-size: larger;
+    height: 240px;
+    
+}
     </style>
 </head>
 
@@ -65,16 +78,18 @@ animation: rotation 1s linear infinite;
                     {% endif %}
                 </ul>
                 <ul id="" class="">
-                    <span class="nav-contact-desk"><i class="fa-solid fa-envelope"></i> asmhomeo@gmail.com</span>
+                    <span class="nav-contact-desk"><i class="fa-solid fa-envelope"></i> asmhomoeo@gmail.com</span>
                     <br>
                     <span class="nav-contact-desk"><i class="fa-solid fa-phone"></i> 9922332719</span>
                 </ul>
                 <ul id="nav-links-list-desk" class="navbar-nav list-unstyled nav d-flex flex-column m-0 p-0">
-                    <li class="nav-item m-2"><a class="nav-link " href="{% url 'index' %}">HOME</a></li>
-                        <li class="nav-item m-2"><a class="nav-link active-link" href="{% url 'adminpage' %}">SEARCH SECTION</a></li>
-                        <li class="nav-item m-2"><a class="nav-link" href="{% url 'adminpage2' %}">ADMIN PAGE2 (MORE FEATURES)</a></li>
-                    
-                </ul>
+                    <li class="nav-item m-2"><a class="nav-link" href="{% url 'index' %}">HOME</a></li>
+                        <li class="nav-item m-2"><a class="nav-link " href="{% url 'adminpage' %}">ADMIN PAGE</a></li>
+                        <li class="nav-item m-2"><a class="nav-link active-link" href="{% url 'search_section' %}">SEARCH SECTION</a></li>
+                        <li class="nav-item m-2"><a class="nav-link" href="{% url 'adminpage2' %}">ADD PATIENT</a></li>
+                        <li class="nav-item m-2"><a class="nav-link" href="{% url 'change_data' %}">CHANGE DATA</a></li>
+                        <li class="nav-item m-2"><a class="nav-link" href="{% url 'sendsms' %}">SEND SMS</a></li>
+                    </ul>
                 <ul id="contact-icons-desk" class="mt-2 contact-icons">
                     <span class="icon" style="font-size: larger;"><a target="_blank"
                                 href="#"><i
@@ -113,14 +128,17 @@ animation: rotation 1s linear infinite;
                         {% endif %}
                     </ul>
                     <ul class="nav-contact">
-                        <span><i class="fa-solid fa-envelope"></i> asmhomeo@gmail.com</span>
+                        <span><i class="fa-solid fa-envelope"></i> asmhomoeo@gmail.com</span>
                         <br>
                         <span><i class="fa-solid fa-phone"></i> 9922332719</span>
                     </ul>
                     <ul id="nav-links-list" class="navbar-nav list-unstyled nav d-flex flex-column m-0 p-0">
                         <li class="nav-item m-2"><a class="nav-link" href="{% url 'index' %}">HOME</a></li>
-                        <li class="nav-item m-2"><a class="nav-link active-link" href="{% url 'adminpage' %}">SEARCH SECTION</a></li>
-                        <li class="nav-item m-2"><a class="nav-link" href="{% url 'adminpage2' %}">ADMIN PAGE2 (MORE FEATURES)</a></li>
+                        <li class="nav-item m-2"><a class="nav-link " href="{% url 'adminpage' %}">ADMIN PAGE</a></li>
+                        <li class="nav-item m-2"><a class="nav-link active-link" href="{% url 'search_section' %}">SEARCH SECTION</a></li>
+                        <li class="nav-item m-2"><a class="nav-link" href="{% url 'adminpage2' %}">ADD PATIENT</a></li>
+                        <li class="nav-item m-2"><a class="nav-link" href="{% url 'change_data' %}">CHANGE DATA</a></li>
+                        <li class="nav-item m-2"><a class="nav-link" href="{% url 'sendsms' %}">SEND SMS</a></li>
                       </ul>
                     <ul id="contact-icons" class="mt-2 contact-icons">
                         <span class="icon" style="font-size: larger;"><a target="_blank"
@@ -161,68 +179,41 @@ animation: rotation 1s linear infinite;
                 <img id="heroimgmob" class="mobile-logo-img d-lg-none mt-3 me-3"
                     src="{% static 'images/profile-pic.png' %}" alt="profile_pic">
 
-                <div class="container">
-                    <div id="search-sec" class="section container head-narrow-content position-relative">
-                        <div id="search-sec1" class="row">
-                            <div class="col-md-12 mt-5 mt-lg-0">
-                                <div class="row row-bottom-padded-sm mt-5 mt-lg-0">
-                                    <a href="{% url 'adminpage2' %}" >Click here for More features (Add,Del,Update patients, Notice, Status)</a>
+                <a href="{% url 'index' %}"class="btn btn-secondary btn-learn col-md-2 col-4" ><i class="fa-solid fa-arrow-left"></i> GOTO HOME</a>
                     
-                                    <div class="col-md-12 mt-5 mt-lg-0">
-                                        <div class="search-sec-desc"><span class="head-heading">Search Section</span>
-                                            <h3 class="heading-meta3 mt-3">Search (Name or Mobile No. or Register No.)
-                                            </h3>
-                                            <div class="container my-5 h-100">
-                                                <div class="form-group m-2 col-md-12">
-                                                    <label for="searchinput">Search (Name or Mobile No. or Register
-                                                        No.)</label>
-                                                    <input type="text" class="form-control" id="searchinput"
-                                                        aria-describedby="NamelHelp" required placeholder="Search Here">
-                                                </div>
-                                                <div id="search-data" class="table-responsive position-relative h-100">
 
-                                                    <!-- <div class="col-md-10 m-2  p-3 text-center rounded-2 position-relative" -->
-                                                    <!-- style="background-color: #ededed; margin: auto; color:black; font-weight: 400;"> -->
-
-                                                    <table class="table table-striped table-hover">
-
-                                                        <!-- <table class="container m-auto"> -->
-                                                        <div class="loader-div" id="loader">
-                                                            <div class="loader"></div>
-                                                            
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        </div>
-
-
-
-
-                                                        <!-- </table>-->
-                                                    </table>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                <div class="container m-auto w-100">
+                    
+                    <div class="row col-12 m-2 d-flex justify-content-center align-items-center h-50">
+                        <a href="{% url 'search_section' %}" class="box col-md-5 col-12 m-2 btn btn-success rounded">
+                            SEARCH SECTION
+                        </a>
+                        <a href="{% url 'adminpage2' %}" class="box col-md-5 col-12 m-2  btn btn-warning rounded">
+                            ADD PATIENTS, NOTICE, STATUS
+                        </a>
                     </div>
-
-
-                    <div id="footer" class="w-100 m-0 bg-danger">
-                        <p class="text-center m-0 links">&copy; Developed By <span><a class="" target="_blank"
-                                    href="https://vedanttathe.netlify.app"> Vedant Tathe</a></span></p>
+                    <div class="row col-12 m-2 d-flex justify-content-center align-items-center h-50">
+                        <a href="{% url 'read_messages' %}" class="box col-md-5 col-12 m-2  btn btn-danger rounded">
+                            Read Messages
+                        </a>
+                        <a href="{% url 'change_data' %}" class="box col-md-5 col-12 m-2  btn btn-secondary rounded">
+                            CHANGE DATA
+                        </a>
+                    </div>
+                    <div class="row col-12 m-2 d-flex justify-content-center align-items-center h-50">
+                        <a href="{% url 'sendsms' %}" class="box col-md-5 col-12 m-2  btn btn-warning rounded">
+                            SEND SMS TO PATIENTS
+                        </a>
                     </div>
 
                 </div>
+                <div id="footer" class="w-100 m-0 mt-4 bg-danger">
+                    <p class="text-center m-0 links">&copy; Developed By <span><a class="" target="_blank"
+                                href="https://vedanttathe.netlify.app"> Vedant Tathe</a></span></p>
+                </div>
+                
             </div>
+            
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
                 crossorigin="anonymous"></script>
@@ -234,73 +225,7 @@ animation: rotation 1s linear infinite;
                 integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script>
-                $(document).ready(function () {
-                    function fetchData(query) {
-                        $.ajax({
-                            url: '{% url "searchdata" %}',
-                            method: 'GET',
-                            data: { search: query },
-                            beforeSend: function () {
-                                $('#loader').show();
-                            },
-                            success: function (data) {
-                                $('#loader').hide();
-                                $('#search-data table').empty(); // Clear previous data
-                                data.forEach(function (item) {
-                                    // var row = '<tr class="d-flex flex-wrap gap-2">' +
-                                    //     '<td>' + item.Name + '</td>' +
-                                    //     '<td>' + item.MobileNo + '</td>' +
-                                    //     '<td>' + item.RegNo + '</td>' +
-                                    //     '<td> <a href="'+'" class="my-1 btn btn-warning">Update</a></td>' +
-                                    //     '<td><a href="'+'" class="my-1 btn btn-danger">Delete</a> </td>' +
-                                    //     '</tr>';
-
-
-                                    var url = '/delpatient/' + encodeURIComponent(item.RegNo) + '/';
-                                    var row = '<tr class="d-flex align-items-center gap-2">' +
-                                        '<td class="col">' + item.Name + '</td>' +
-                                        '<td class="col">' + item.MobileNo + '</td>' +
-                                        '<td class="col">' + item.RegNo + '</td>' +
-                                        '<td class="col-auto">' +
-                                        '<a href="' + url + '" class="btn btn-danger btn-sm my-1">Delete</a>' +
-                                        '</td>' +
-                                        '<td class="col-auto">' +
-                                        '<a href="#" class="btn btn-warning btn-sm my-1">Update</a>' +
-                                        '</td>' +
-                                        '</tr>';
-                                    $('#search-data table').append(row);
-                                });
-                            },
-                            error: function (xhr, status, error) {
-                                $('#loader').hide();
-                                console.error('Error fetching clinic status:', error);
-                            }
-                        });
-                    }
-
-                    // Fetch data on page load
-                    fetchData('');
-
-                    // Fetch data on input change
-                    $('#searchinput').on('input', function () {
-                        const query = $(this).val();
-                        fetchData(query);
-                    });
-                });
-
-
-                
-
-let btns = document.querySelectorAll(".btn");
-
-btns.forEach((btn) => {  
-    btn.addEventListener('click', () => {
-        btn.innerHTML = '<span class="loader-btn"></span>';
-    });
-});
-
-            </script>
+           
             <script src="{% static 'js/script1.js' %}"></script>
 
 

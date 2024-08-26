@@ -35,6 +35,11 @@
         background-position: center;
         
     }
+
+    .slide h2{
+        font-size: 30px;
+        font-weight: 700;
+    }
 }
 
 
@@ -53,6 +58,11 @@
         height: 10rem;
         padding-bottom: 50rem;
         background-color: white !important;
+    }
+
+    .slide h2{
+        font-size: 30px;
+        font-weight: 700;
     }
 
 }
@@ -104,9 +114,9 @@ animation: rotation 1s linear infinite;
                     {% endif %}
                 </ul>
                 <ul id="" class="">
-                    <span class="nav-contact-desk"><i class="fa-solid fa-envelope"></i> asmhomeo@gmail.com</span>
+                    <span class="nav-contact-desk"><i class="fa-solid fa-envelope"></i> asmhomoeo@gmail.com</span>
                     <br>
-                    <span class="nav-contact-desk"><i class="fa-solid fa-phone"></i> 9922332719</span>
+                    <span class="nav-contact-desk"><i class="fa-solid fa-phone"></i> {{mobileno}}</span>
                 </ul>
                 <ul id="nav-links-list-desk" class="navbar-nav list-unstyled nav d-flex flex-column m-0 p-0">
                     <li class="nav-item m-1"><a class="nav-link active-link" href="#hero">INTRODUCTION</a></li>
@@ -150,9 +160,9 @@ animation: rotation 1s linear infinite;
                         {% endif %}                    
                     </ul>
                     <ul class="nav-contact">
-                        <span><i class="fa-solid fa-envelope"></i> asmhomeo@gmail.com</span>
+                        <span><i class="fa-solid fa-envelope"></i> {{email}}</span>
                         <br>
-                        <span><i class="fa-solid fa-phone"></i> 9922332719</span>
+                        <span><i class="fa-solid fa-phone"></i> {{mobileno}}</span>
                     </ul>
                     <ul id="nav-links-list" class="navbar-nav list-unstyled nav d-flex flex-column m-0 p-0">
                         <li class="nav-item m-2"><a class="nav-link active-link" href="#hero">INTRODUCTION</a></li>
@@ -177,15 +187,7 @@ animation: rotation 1s linear infinite;
                     </ul>
                 </nav>
 
-                {% if notice != 'NOTSET' and notice != None %}
-                <div class="notice m-0 text-center shadow p-0" style="background-color: #ffa2a2; border:2px solid white">
-
-                    <marquee>
-                        <h5>{{notice}}</h5>
-                    </marquee>
-                </div>
-
-                {% endif %}
+                
 
                 
 
@@ -203,9 +205,18 @@ animation: rotation 1s linear infinite;
                 {% endif %}
                 
                 <!-- <div id="hero" class="h-100 position-relative"> -->
-                <div id="hero" class="section slider h-100 w-100">
+                <div id="hero" class="section slider h-100 w-100 ">
+                    {% if notice != 'NOTSET' and notice != None %}
+                <div class="notice m-0 text-center shadow p-0" style="background-color: #ffa2a2; border:2px solid white">
+
+                    <marquee>
+                        <h3>{{notice}}</h3>
+                    </marquee>
+                </div>
+
+                {% endif %}
                     
-                    <div class="slides m-0 mt-0" style="transition: 0.5s; height:60%">
+                    <div class="slides m-0 mt-0 " style="transition: 0.5s; height:60%">
                         <div id="nav-btn" class="d-lg-none m-4" style="transition: 0.5s;">
                             <i class="fa-solid fa-bars " style="font-size: xx-large;"></i>
                         </div>
@@ -215,14 +226,18 @@ animation: rotation 1s linear infinite;
                         </div>
 
                         <!-- <div class="mobile-logo d-lg-none " style="transition: 0.5s;"> -->
-                        <img id="heroimgmob" class="mobile-logo-img d-lg-none mt-3 me-3"
+                        <img id="heroimgmob" class="mobile-logo-img d-lg-none m-4"
                             src="{% static 'images/profile-pic.png' %}" alt="profile_pic">
 
                         <!-- </div> -->
 
                         <div class="slide d-flex ms-4 flex-column justify-content-center">
-                            <h1>Welcome To </h1>
-                            <h1>Mahore Homeo Clinic</h1>
+                            {% if hero_heading == "NOTSET" or hero_heading == None %}
+                            <h2>Welcome To </h2>
+                            <h2>Mahore Homeo Clinic</h2>
+                            {% else %}
+                            <h2>{{hero_heading}}</h2>
+                            {% endif %}
                             <p><a class="btn btn-secondary btn-learn my-3"
                                     href="#location">Address <i
                                         class="fa-solid fa-file-arrow-down"></i></a></p>
@@ -230,16 +245,28 @@ animation: rotation 1s linear infinite;
 
                         </div>
                         <div class="slide d-flex ms-4 flex-column justify-content-center">
-                            <h1>Hi!</h1>
-                            <h1>I'm Akshay</h1>
+                            {% comment %} <h2>Hi!</h2>
+                            <h2>I'm Akshay</h2> {% endcomment %}
+                            {% if hero_heading == "NOTSET" or hero_heading == None %}
+                            <h2>Welcome To </h2>
+                            <h2>Mahore Homeo Clinic</h2>
+                            {% else %}
+                            <h2>{{hero_heading}}</h2>
+                            {% endif %}
                             <p><a class="btn btn-secondary btn-learn my-3"
                                     href="#education">Education <i class="fa-solid fa-file-arrow-down"></i></a></p>
                             
 
                         </div>
                         <div class="slide d-flex ms-4 flex-column justify-content-center">
-                            <h1>You Can</h1>
-                            <h1>Contact Me</h1>
+                            {% comment %} <h2>You Can</h2>
+                            <h2>Contact Me</h2> {% endcomment %}
+                            {% if hero_heading == "NOTSET" or hero_heading == None %}
+                            <h2>Welcome To </h2>
+                            <h2>Mahore Homeo Clinic</h2>
+                            {% else %}
+                            <h2>{{hero_heading}}</h2>
+                            {% endif %}
                             <p><a class="btn btn-secondary btn-learn my-3"
                                     href="#contact-me">Contacts <i
                                         class="fa-solid fa-file-arrow-down"></i></a>
@@ -249,8 +276,13 @@ animation: rotation 1s linear infinite;
                         </div>
                         <div class="asm-status" style="color:black;">
                             <h4><strong>Clinic Timings</strong></h5>
+                            {% if clinic_timings == "NOTSET" or clinic_timings == None%}
                             <h5>Morning: 10 AM To 1 PM</h5>
                             <h5>Evening: 6:30 PM To 9:30 PM</h5>
+                            {% else %}
+                            <h5>{{clinic_timings}}</h5>
+                            
+                            {% endif %}
                             <h4 class="position-relative flex-wrap d-flex d-md-block">Mahore Homeo Clinic is Currently &nbsp; <span class="animate-status mt-4 mt-md-0"><strong>{{clinic_status}}</strong></span></h4>
                         </div>
                         <div class="slider-control mt-4 ms-3 p-0 d-flex flex-column position-absolute">
@@ -271,6 +303,8 @@ animation: rotation 1s linear infinite;
                                     <div class="about-desc"><span class="heading-meta">About Me</span>
                                         <h2 class="head-heading mt-3">Who Am I?</h2>
                                         <div class="container">
+                                            {% if about_data == "NOTSET" or about_data == None%}
+                                            
                                             <p>I am Dr. Akshay Mahore, a Homeopathy doctor from MyCollege of Medicine. I
                                                 am passionate about exploring new advancements in homeopathy and often
                                                 amazed by the progress we as a human species have made in recent years!
@@ -279,11 +313,14 @@ animation: rotation 1s linear infinite;
                                                 <strong>holistic health consultations</strong> at my clinic. My services
                                                 focus on <strong>natural healing</strong> and <strong>preventative
                                                     care</strong>. I am interested in <strong>Holistic Health</strong>,
-                                                <strong>Alternative Medicine</strong>, and <strong>Integrative
-                                                    Healthcare</strong>.
-                                            </p>
-                                        </div>
-                                    </div>
+                                                    <strong>Alternative Medicine</strong>, and <strong>Integrative
+                                                        Healthcare</strong>.
+                                                    </p>
+                                                    {% else %}
+                                                    <p>{{about_data}}</p>                                            
+                                                    {% endif %}
+                                                </div>
+                                            </div>
                                 </div>
                             </div>
                         </div>
@@ -546,9 +583,9 @@ animation: rotation 1s linear infinite;
                                 <div class="row position-relative h-100">
                                     <div
                                         class="col-md-4 ms-md-4 links d-flex flex-column justify-content-center align-items-center">
-                                        <p><span><i class="fa-solid fa-envelope"></i> asmhomeo@gmail.com</span>
+                                        <p><span><i class="fa-solid fa-envelope"></i> {{email}}</span>
                                             <br>
-                                            <span><i class="fa-solid fa-phone"></i> 9922332719</span>
+                                            <span><i class="fa-solid fa-phone"></i> {{mobileno}}</span>
                                         </p>
 
                                         <p class="contact-icons"><span class="" style="font-size: larger;"><a
@@ -603,7 +640,7 @@ animation: rotation 1s linear infinite;
                         </div>
                     </div>
                 </div>
-                <div id="footer" class="w-100 m-0 bg-danger">
+                <div id="footer" class="w-100 pb-5">
                     <p class="text-center m-0 links">&copy; Developed By <span><a class="" target="_blank" href="https://vedanttathe.netlify.app"> Vedant Tathe</a></span></p>
                 </div>
 
@@ -675,7 +712,20 @@ function showSlide(index,a) {
             delay:1,
             opacity:1,
         });
-        
+
+        gsap.from('.slide h2',{
+            delay:0.6,
+            opacity:0,
+            scale:0.2,
+            x:300,
+            
+        });
+
+        gsap.to('.slide h2',{
+            delay:1,
+            opacity:1,
+        });
+
     }
     
     sliderControlItems.forEach((elem, index) => {
@@ -774,13 +824,6 @@ sliderControlItems.forEach((elem, index) => {
 
 
 
-let btns = document.querySelectorAll(".btn");
-
-btns.forEach((btn) => {  
-    btn.addEventListener('click', () => {
-        btn.innerHTML = '<span class="loader-btn"></span>';
-    });
-});
 
 
     </script>

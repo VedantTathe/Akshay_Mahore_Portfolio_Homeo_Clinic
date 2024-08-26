@@ -38,7 +38,7 @@ class MyClinic():
 
         
 
-    def changeStatus(self,query='NONSET'):
+    def changeStatus(self,query='NOTSET'):
         data = {}
         try:
             client = MongoClient(constring)
@@ -211,7 +211,153 @@ class MyClinic():
 
         return data
 
+      
+    def changeHeroHeading(self,query='NOTSET'):
+        data = {}
+        try:
+            client = MongoClient(constring)
+            db = client['Clinic']
+            coll = db['Asmhomeo']
 
+            query = query.strip()
+
+            coll.update_one(
+                {"hero_heading": {"$exists": True}},  # Query
+                {"$set": {"hero_heading": query}}    # Update
+            )
+
+            data.update({
+                'message':'Hero Heading Changed Successfully..!'
+            })
+        except Exception as e:
+            print(e)
+            data.update({
+                'err': 'Oops..! Something Went Wrong..!'
+            })
+
+        return data
+
+
+  
+    def changeClinicTimings(self,query='NOTSET'):
+        data = {}
+        try:
+            client = MongoClient(constring)
+            db = client['Clinic']
+            coll = db['Asmhomeo']
+
+            query = query.strip()
+
+            coll.update_one(
+                {"clinic_timings": {"$exists": True}},  # Query
+                {"$set": {"clinic_timings": query}}    # Update
+            )
+
+            data.update({
+                'message':'Clinic Timings Changed Successfully..!'
+            })
+        except Exception as e:
+            print(e)
+            data.update({
+                'err': 'Oops..! Something Went Wrong..!'
+            })
+
+        return data
+
+      
+    def changeAboutData(self,query='NOTSET'):
+        data = {}
+        try:
+            client = MongoClient(constring)
+            db = client['Clinic']
+            coll = db['Asmhomeo']
+
+            query = query.strip()
+
+            coll.update_one(
+                {"about_data": {"$exists": True}},  # Query
+                {"$set": {"about_data": query}}    # Update
+            )
+
+            data.update({
+                'message':'About Data Changed Successfully..!'
+            })
+        except Exception as e:
+            print(e)
+            data.update({
+                'err': 'Oops..! Something Went Wrong..!'
+            })
+
+        return data
+
+      
+    def changeContactData(self,mobileno='9922332719',email='asmhomoeo@gmail.com'):
+        data = {}
+        try:
+            client = MongoClient(constring)
+            db = client['Clinic']
+            coll = db['Asmhomeo']
+
+            mobileno = mobileno.strip()
+            email = email.strip()
+
+            coll.update_one(
+                {"mobileno": {"$exists": True}},  # mobileno
+                {"$set": {"mobileno": mobileno}}    # Update
+            )
+
+            coll.update_one(
+                {"email": {"$exists": True}},  # email
+                {"$set": {"email": email}}    # Update
+            )
+
+            data.update({
+                'message':'Contact Data Changed Successfully..!'
+            })
+        except Exception as e:
+            print(e)
+            data.update({
+                'err': 'Oops..! Something Went Wrong..!'
+            })
+
+        return data
+
+    def readMessages(self):
+        client = MongoClient(constring)
+        db = client['Clinic']
+        coll = db['AsmhomeoMessages']
+
+        
+        results = list(coll.find({}))
 
 
     
+        return results
+        
+    def delMsg(self,message):
+
+        data = {}
+        try:
+            # Connect to MongoDB
+            print(f"Attempting to delete message: {message}")
+
+            client = MongoClient(constring)  # Ensure 'constring' is defined correctly
+            
+            # Access the 'Clinic' database and 'Asmhomeo' collection
+            db = client['Clinic']
+            coll = db['AsmhomeoMessages']
+            
+            # Delete all documents matching the given 'message'
+            result = coll.delete_many({'message': message})
+            
+            # Update the response based on the result
+            if result.deleted_count > 0:
+                data['message'] = 'Message Deleted Successfully..!'
+            else:
+                data['err'] = 'No Message found'
+        
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            data['err'] = 'Oops..! Something Went Wrong..!'
+        
+        return data

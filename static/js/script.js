@@ -179,7 +179,22 @@ gsap.from('.slide h1',{
     x:20,
 });
 
+gsap.from('.slide h2',{
+    delay:0.6,
+    opacity:0,
+    scale:0.2,
+    x:20,
+});
+
+
 gsap.to('.slide h1',{
+    x:0,
+    delay:1,
+    opacity:1,
+    scale:1,
+});
+
+gsap.to('.slide h2',{
     x:0,
     delay:1,
     opacity:1,

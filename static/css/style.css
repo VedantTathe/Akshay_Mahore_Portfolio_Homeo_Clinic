@@ -136,7 +136,15 @@ body{
 .slide h1{
     font-size: 50px;
     font-weight: 700;
+    color: black;
 }
+
+.slide h2{
+    font-size: 40px;
+    font-weight: 700;
+    color: black;
+}
+
 
 .asm-status{
     position: absolute;
@@ -459,12 +467,8 @@ border-color: transparent transparent #2fa499 transparent;
 #heroimgmob{
     border: 3px solid white !important;
     border-radius: 50%;
-    position: absolute; 
-    right: 0;
-    top: 0px;
+    z-index: 12;
     position: fixed;
-    z-index: 20;
-
 }
 
 
