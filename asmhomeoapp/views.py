@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseBadRequest
 import random
 import string
-from asmhomeoapp import models
+from asmhomeoapp import mongodb as models
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -16,11 +16,14 @@ from pytz import timezone
 import pytz
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.conf import settings
+from django.core.mail import send_mail
 
 
 
 @csrf_exempt
 def index(request):
+
     obj = models.MyClinic()
     res = obj.getClinicStatus()
     
@@ -165,12 +168,25 @@ def logoutpage(request):
 @csrf_exempt
 def forgotPassword(request):
 
-    return render(request, 'login.html',{'message':'Check Your Mobile We have sent the password in your email'})
+    obj = models.MyClinic()
+    data = obj.getClinicStatus()
+    email = data['email']
+    print(email,type(email))
+    
+    subject = 'Dear, Akshay Here is your username and password'
+    message = 'Welcome, Your username is asmhomoeo786 and password is OMSai@786'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [email, ]
+    send_mail( subject, message, email_from, recipient_list )
 
+    return render(request, 'login.html',{'message':'Check Your Mobile We have sent the password in your email'})
 
 
 @csrf_exempt
 def searchdata(request):
+    if 'user_role' not in request.session:
+        return redirect('/')
+    
     query = request.GET.get('search', '')
 
     obj = models.MyClinic()
@@ -183,16 +199,23 @@ def searchdata(request):
 
 @csrf_exempt
 def changestatus(request, stat=None):
-    
+    if 'user_role' not in request.session:
+        return redirect('/')
+
     # query = request.GET.get('stat', None)
 
     obj = models.MyClinic()
     data = obj.changeStatus(stat)
+    res = obj.getClinicStatus()
+    data.update(res)
+    
     return render(request,'admin2.html',data)
 
 
 @csrf_exempt
 def updatenotice(request, stat=None):
+    if 'user_role' not in request.session:
+        return redirect('/')
     if request.method == 'POST':
         # Get the 'notice' field from the form
         notice = request.POST.get('notice')
@@ -206,6 +229,8 @@ def updatenotice(request, stat=None):
         # Prepare the context data
         obj = models.MyClinic()
         data = obj.updateNotice(notice)
+        res = obj.getClinicStatus()
+        data.update(res)
         
         # Render the response
         return render(request, 'admin2.html', data)
@@ -215,6 +240,8 @@ def updatenotice(request, stat=None):
         if stat:
             obj = models.MyClinic()
             data = obj.updateNotice(stat)
+            res = obj.getClinicStatus()
+            data.update(res)
 
         return render(request, 'admin.html', data)
 
@@ -240,6 +267,9 @@ def sendmessage(request):
  
 @csrf_exempt
 def addpatient(request):
+    if 'user_role' not in request.session:
+        return redirect('/')
+    
     name = request.POST.get('name')
     mobileno = request.POST.get('mobileno')
     regno = request.POST.get('regno')
@@ -251,6 +281,8 @@ def addpatient(request):
 
     obj = models.MyClinic()
     data = obj.addPatient(name,mobileno,regno)
+    res = obj.getClinicStatus()
+    data.update(res)
     return render(request, 'admin2.html',data)   
 
 
@@ -258,6 +290,10 @@ def addpatient(request):
 
 @csrf_exempt
 def delpatient(request,regno):
+    if 'user_role' not in request.session:
+        return redirect('/')
+
+
     if regno == None:
 
         return render(request, 'admin.html',{'RegNo = None ...! Error'})   
@@ -268,14 +304,23 @@ def delpatient(request,regno):
 
 @csrf_exempt
 def adminpage2(request):
+    if 'user_role' not in request.session:
+        return redirect('/')
 
 
+    obj = models.MyClinic()
+    data = obj.getClinicStatus()
+    
 
-    return render(request, 'admin2.html')
+
+    return render(request, 'admin2.html',data)
 
 
 @csrf_exempt
 def search_section(request):
+    if 'user_role' not in request.session:
+        return redirect('/')
+
 
 
 
@@ -284,15 +329,22 @@ def search_section(request):
 
 @csrf_exempt
 def change_data(request):
+    if 'user_role' not in request.session:
+        return redirect('/')
 
 
 
-    return render(request, 'change_data.html')
+    obj = models.MyClinic()
+    data = obj.getClinicStatus()
+    
+
+    return render(request, 'change_data.html',data)
 
 
 @csrf_exempt
 def sendsms(request):
-
+    if 'user_role' not in request.session:
+        return redirect('/')
 
 
     return render(request, 'sendsms.html')
@@ -300,6 +352,9 @@ def sendsms(request):
 
 @csrf_exempt
 def change_heroheading(request, stat=None):
+    if 'user_role' not in request.session:
+        return redirect('/')
+    
     query = "NOTSET"
     if stat:
         query="NOTSET"
@@ -312,11 +367,20 @@ def change_heroheading(request, stat=None):
 
     obj = models.MyClinic()
     data = obj.changeHeroHeading(query)
+
+    res = obj.getClinicStatus()
+
+    data.update(res)
+    
+
     return render(request,'change_data.html',data)
 
 
 @csrf_exempt
 def change_clinictimings(request, stat=None):
+    if 'user_role' not in request.session:
+        return redirect('/')
+        
     query = "NOTSET"
     if stat:
         query="NOTSET"
@@ -329,12 +393,20 @@ def change_clinictimings(request, stat=None):
 
     obj = models.MyClinic()
     data = obj.changeClinicTimings(query)
+    res = obj.getClinicStatus()
+
+    data.update(res)
+    
+
     return render(request,'change_data.html',data)
 
 
 
 @csrf_exempt
 def change_aboutdata(request, stat=None):
+    if 'user_role' not in request.session:
+        return redirect('/')
+    
     query = "NOTSET"
     if stat:
         query="NOTSET"
@@ -347,18 +419,64 @@ def change_aboutdata(request, stat=None):
 
     obj = models.MyClinic()
     data = obj.changeAboutData(query)
+    
+    res = obj.getClinicStatus()
+    data.update({ 'about_data': res['about_data']})
+    res = obj.getClinicStatus()
+
+    data.update(res)
+    
+
+
     return render(request,'change_data.html',data)
 
 
 
 @csrf_exempt
 def change_contactdata(request):
+    if 'user_role' not in request.session:
+        return redirect('/')
+    
     mobileno = request.POST.get('mobileno')
     email = request.POST.get('email')
     
 
+
+
     obj = models.MyClinic()
     data = obj.changeContactData(mobileno,email)
+    return render(request,'change_data.html',data)
+
+
+@csrf_exempt
+def change_edudata(request,index):
+    
+    if 'user_role' not in request.session:
+        return redirect('/')
+    
+    obj = models.MyClinic()
+
+
+    cname = request.POST.get('cname')
+    cyear = request.POST.get('cyear')
+    cdesc = request.POST.get('cdesc')
+    cdeg = request.POST.get('cdeg')
+    
+
+    res = obj.getClinicStatus()
+
+    t1 = res['edu_data_name']
+    t2 = res['edu_data_year']
+    t3 = res['edu_data_desc']
+    t4 = res['edu_data_degree']
+
+    t1[index] = (cname)
+    t2[index] = (cyear)
+    t3[index] = (cdesc) 
+    t4[index] = (cdeg)    
+
+    data = obj.changeEduData(t1,t2,t3,t4)
+    data.update(obj.getClinicStatus())
     return render(request,'change_data.html',data)
 
 
@@ -366,6 +484,8 @@ def change_contactdata(request):
  
 @csrf_exempt
 def read_messages(request):   
+    if 'user_role' not in request.session:
+        return redirect('/')
 
     obj = models.MyClinic()
     data = obj.readMessages()
@@ -378,7 +498,9 @@ def read_messages(request):
  
 @csrf_exempt
 def delmsg(request, stat):
-    
+    if 'user_role' not in request.session:
+        return redirect('/')
+
     obj = models.MyClinic()
     data = obj.delMsg(stat)
 
@@ -398,16 +520,16 @@ def delmsg(request, stat):
 
 
 
-from bson.json_util import dumps
+# from bson.json_util import dumps
 
 
-@api_view(['POST'])
-def allusers_data(request):
-    data=None
-    if request.POST.get('code')=="secret-code":
-        obj = models.MyClinic()
-        data = obj.getAllData()
-        data = dumps(data)
-        return Response({'status':200,'payload':data,'message':'success'})
-    return Response({'status':404,'payload':data,'message':'error'})
+# @api_view(['POST'])
+# def allusers_data(request):
+#     data=None
+#     if request.POST.get('code')=="secret-code":
+#         obj = models.MyClinic()
+#         data = obj.getAllData()
+#         data = dumps(data)
+#         return Response({'status':200,'payload':data,'message':'success'})
+#     return Response({'status':404,'payload':data,'message':'error'})
     

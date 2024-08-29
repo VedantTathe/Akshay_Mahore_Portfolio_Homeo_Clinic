@@ -210,7 +210,7 @@ animation: rotation 1s linear infinite;
                 <div class="notice m-0 text-center shadow p-0" style="background-color: #ffa2a2; border:2px solid white">
 
                     <marquee>
-                        <h3>{{notice}}</h3>
+                        <h3>{{notice|safe}}</h3>
                     </marquee>
                 </div>
 
@@ -236,7 +236,7 @@ animation: rotation 1s linear infinite;
                             <h2>Welcome To </h2>
                             <h2>Mahore Homeo Clinic</h2>
                             {% else %}
-                            <h2>{{hero_heading}}</h2>
+                            <h2>{{hero_heading|safe}}</h2>
                             {% endif %}
                             <p><a class="btn btn-secondary btn-learn my-3"
                                     href="#location">Address <i
@@ -249,9 +249,9 @@ animation: rotation 1s linear infinite;
                             <h2>I'm Akshay</h2> {% endcomment %}
                             {% if hero_heading == "NOTSET" or hero_heading == None %}
                             <h2>Welcome To </h2>
-                            <h2>Mahore Homeo Clinic</h2>
+                            <h2>Mahore Homoeo Clinic</h2>
                             {% else %}
-                            <h2>{{hero_heading}}</h2>
+                            <h2>{{hero_heading|safe}}</h2>
                             {% endif %}
                             <p><a class="btn btn-secondary btn-learn my-3"
                                     href="#education">Education <i class="fa-solid fa-file-arrow-down"></i></a></p>
@@ -265,7 +265,7 @@ animation: rotation 1s linear infinite;
                             <h2>Welcome To </h2>
                             <h2>Mahore Homeo Clinic</h2>
                             {% else %}
-                            <h2>{{hero_heading}}</h2>
+                            <h2>{{hero_heading|safe}}</h2>
                             {% endif %}
                             <p><a class="btn btn-secondary btn-learn my-3"
                                     href="#contact-me">Contacts <i
@@ -280,7 +280,7 @@ animation: rotation 1s linear infinite;
                             <h5>Morning: 10 AM To 1 PM</h5>
                             <h5>Evening: 6:30 PM To 9:30 PM</h5>
                             {% else %}
-                            <h5>{{clinic_timings}}</h5>
+                            <h5>{{clinic_timings|safe}}</h5>
                             
                             {% endif %}
                             <h4 class="position-relative flex-wrap d-flex d-md-block">Mahore Homeo Clinic is Currently &nbsp; <span class="animate-status mt-4 mt-md-0"><strong>{{clinic_status}}</strong></span></h4>
@@ -317,7 +317,7 @@ animation: rotation 1s linear infinite;
                                                         Healthcare</strong>.
                                                     </p>
                                                     {% else %}
-                                                    <p>{{about_data}}</p>                                            
+                                                    <p>{{about_data|safe}}</p>                                            
                                                     {% endif %}
                                                 </div>
                                             </div>
@@ -392,6 +392,12 @@ animation: rotation 1s linear infinite;
                                                         </div>
                                                         <div
                                                             class="container col-md-11 m-5 mt-1 timeline-label p-3 rounded">
+                                                            {% if edu_data_name and edu_data_year and edu_data_degree and edu_data_desc %}
+                                                                <h3>{{edu_data_name.0|safe}} <span class="heading-meta2">({{edu_data_year.0|safe}})</span></h3>
+                                                                <h5>{{edu_data_degree.0|safe}}</h5>
+                                                                <p>{{edu_data_desc.0|safe}}</p>
+                                                            {% else %}
+
                                                             <h3>Dakshin Kesri Muni Mishrilalji Homoeopathic
                                                                 Medical College, Aurangabad<span
                                                                     class="heading-meta2">(2012 -
@@ -402,6 +408,7 @@ animation: rotation 1s linear infinite;
                                                                 Homeopathy at DKMM in Aurangabad. This advanced degree
                                                                 equipped me with deeper insights and expertise in
                                                                 homeopathic medical practices.</p>
+                                                            {% endif %}
                                                         </div>
                                                     </div>
                                                 </article>
@@ -412,6 +419,12 @@ animation: rotation 1s linear infinite;
                                                                 class="fa-solid fa-pencil"></i>
                                                         </div>
                                                         <div class="container col-md-11 m-5 timeline-label p-3 rounded">
+                                                            {% if edu_data_name and edu_data_year and edu_data_degree and edu_data_desc %}
+                                                                <h3>{{edu_data_name.1|safe}} <span class="heading-meta2">({{edu_data_year.1|safe}})</span></h3>
+                                                                <h5>{{edu_data_degree.1|safe}}</h5>
+                                                                <p>{{edu_data_desc.1|safe}}</p>
+                                                            {% else %}
+
                                                             <h3>Panchsheel Homoeopathic Medical College<span
                                                                     class="heading-meta2"></span></h3>
                                                             <h5>Bachelor of Homeopathic Medicine and Surgery (BHMS)</h5>
@@ -419,6 +432,7 @@ animation: rotation 1s linear infinite;
                                                                 C Khamgaon, where I earned my BHMS degree. This program
                                                                 provided me with comprehensive knowledge and training in
                                                                 homeopathic medicine.</p>
+                                                            {% endif %}
                                                         </div>
                                                     </div>
                                                 </article>
@@ -429,6 +443,12 @@ animation: rotation 1s linear infinite;
                                                         </div>
                                                         <div
                                                             class="container col-md-11 m-5 mb-1 timeline-label p-3 rounded">
+                                                            {% if edu_data_name and edu_data_year and edu_data_degree and edu_data_desc %}
+                                                                <h3>{{edu_data_name.2|safe}} <span class="heading-meta2">({{edu_data_year.2|safe}})</span></h3>
+                                                                <h5>{{edu_data_degree.2|safe}}</h5>
+                                                                <p>{{edu_data_desc.2|safe}}</p>
+                                                            {% else %}
+
                                                             <h3>R. K. High School and Junior College, Pulgaon
                                                                 <span class="heading-meta2"></span>
                                                             </h3>
@@ -437,6 +457,7 @@ animation: rotation 1s linear infinite;
                                                                 College in Pulgaon, where I completed my secondary and
                                                                 higher secondary education. This period helped me excel
                                                                 in my studies and prepare for a career in medicine.</p>
+                                                                {%endif%}
                                                         </div>
                                                     </div>
                                                 </article>
@@ -448,6 +469,12 @@ animation: rotation 1s linear infinite;
                                                         </div>
                                                         <div
                                                             class="container col-md-11 m-5 mb-1 timeline-label p-3 rounded">
+                                                            {% if edu_data_name and edu_data_year and edu_data_degree and edu_data_desc %}
+                                                                <h3>{{edu_data_name.3|safe}} <span class="heading-meta2">({{edu_data_year.3|safe}})</span></h3>
+                                                                <h5>{{edu_data_degree.3|safe}}</h5>
+                                                                <p>{{edu_data_desc.3|safe}}</p>
+                                                            {% else %}
+
                                                             <h3>Pulgaon Cotton Mills Prathamik School, Pulgaon
                                                                 <span class="heading-meta2"></span>
                                                             </h3>
@@ -456,6 +483,7 @@ animation: rotation 1s linear infinite;
                                                                 I began my educational journey at Pulgaon Cotton Mills
                                                                 Prathamik School in Pulgaon, where I developed a strong
                                                                 foundation in primary education.</p>
+                                                                {%endif%}
 
                                                         </div>
                                                     </div>
@@ -640,7 +668,7 @@ animation: rotation 1s linear infinite;
                         </div>
                     </div>
                 </div>
-                <div id="footer" class="w-100 pb-5">
+                <div id="footer" class="w-100 pb-5 pb-m-0">
                     <p class="text-center m-0 links">&copy; Developed By <span><a class="" target="_blank" href="https://vedanttathe.netlify.app"> Vedant Tathe</a></span></p>
                 </div>
 

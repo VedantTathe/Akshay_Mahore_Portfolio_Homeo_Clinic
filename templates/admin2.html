@@ -232,7 +232,7 @@
                                                         <label for="exampleInputMessage1">Message</label>
                                                         <textarea name="notice" rows="5" class="form-control"
                                                             id="exampleInputMessage1" required
-                                                            placeholder="Enter Message"></textarea>
+                                                            placeholder="Enter Message">{{notice}}</textarea>
                                                     </div>
                                                     <div class="row d-flex justify-content-center w-100">
 
@@ -276,6 +276,7 @@
                                             </div>
                                             <div>
                                                 <p>NOTE: Clinic status will remain same till next day</p>
+                                                <p>Current Satus: <strong>{{clinic_status}}</strong></p>
                                             </div>
                                         </div>
                                     </div>
@@ -287,7 +288,7 @@
 
 
 
-                    <div id="footer" class="w-100 m-0 bg-danger">
+                    <div id="footer" class="w-100 m-0 pb-5 pb-m-0">
                         <p class="text-center m-0 links">&copy; Developed By <span><a class="" target="_blank"
                                     href="https://vedanttathe.netlify.app"> Vedant Tathe</a></span></p>
                     </div>

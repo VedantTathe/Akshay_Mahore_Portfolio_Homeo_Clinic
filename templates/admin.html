@@ -84,8 +84,8 @@ animation: rotation 1s linear infinite;
                 </ul>
                 <ul id="nav-links-list-desk" class="navbar-nav list-unstyled nav d-flex flex-column m-0 p-0">
                     <li class="nav-item m-2"><a class="nav-link" href="{% url 'index' %}">HOME</a></li>
-                        <li class="nav-item m-2"><a class="nav-link " href="{% url 'adminpage' %}">ADMIN PAGE</a></li>
-                        <li class="nav-item m-2"><a class="nav-link active-link" href="{% url 'search_section' %}">SEARCH SECTION</a></li>
+                        <li class="nav-item m-2"><a class="nav-link active-link" href="{% url 'adminpage' %}">ADMIN PAGE</a></li>
+                        <li class="nav-item m-2"><a class="nav-link " href="{% url 'search_section' %}">SEARCH SECTION</a></li>
                         <li class="nav-item m-2"><a class="nav-link" href="{% url 'adminpage2' %}">ADD PATIENT</a></li>
                         <li class="nav-item m-2"><a class="nav-link" href="{% url 'change_data' %}">CHANGE DATA</a></li>
                         <li class="nav-item m-2"><a class="nav-link" href="{% url 'sendsms' %}">SEND SMS</a></li>
@@ -134,8 +134,8 @@ animation: rotation 1s linear infinite;
                     </ul>
                     <ul id="nav-links-list" class="navbar-nav list-unstyled nav d-flex flex-column m-0 p-0">
                         <li class="nav-item m-2"><a class="nav-link" href="{% url 'index' %}">HOME</a></li>
-                        <li class="nav-item m-2"><a class="nav-link " href="{% url 'adminpage' %}">ADMIN PAGE</a></li>
-                        <li class="nav-item m-2"><a class="nav-link active-link" href="{% url 'search_section' %}">SEARCH SECTION</a></li>
+                        <li class="nav-item m-2"><a class="nav-link active-link " href="{% url 'adminpage' %}">ADMIN PAGE</a></li>
+                        <li class="nav-item m-2"><a class="nav-link" href="{% url 'search_section' %}">SEARCH SECTION</a></li>
                         <li class="nav-item m-2"><a class="nav-link" href="{% url 'adminpage2' %}">ADD PATIENT</a></li>
                         <li class="nav-item m-2"><a class="nav-link" href="{% url 'change_data' %}">CHANGE DATA</a></li>
                         <li class="nav-item m-2"><a class="nav-link" href="{% url 'sendsms' %}">SEND SMS</a></li>
@@ -179,35 +179,37 @@ animation: rotation 1s linear infinite;
                 <img id="heroimgmob" class="mobile-logo-img d-lg-none mt-3 me-3"
                     src="{% static 'images/profile-pic.png' %}" alt="profile_pic">
 
-                <a href="{% url 'index' %}"class="btn btn-secondary btn-learn col-md-2 col-4" ><i class="fa-solid fa-arrow-left"></i> GOTO HOME</a>
+                
                     
-
+                    
                 <div class="container m-auto w-100">
-                    
+                    <div class="mt-5 m-md-0 ms-2">
+                    <a href="{% url 'index' %}"class="btn btn-secondary btn-learn col-md-2 col-4 mt-5 m-md-0 ms-5" ><i class="fa-solid fa-arrow-left"></i> GOTO HOME</a>
+                    </div>
                     <div class="row col-12 m-2 d-flex justify-content-center align-items-center h-50">
-                        <a href="{% url 'search_section' %}" class="box col-md-5 col-12 m-2 btn btn-success rounded">
+                        <a href="{% url 'search_section' %}" class="box col-md-5 col-11 m-2 btn btn-success rounded">
                             SEARCH SECTION
                         </a>
-                        <a href="{% url 'adminpage2' %}" class="box col-md-5 col-12 m-2  btn btn-warning rounded">
+                        <a href="{% url 'adminpage2' %}" class="box col-md-5 col-11 m-2  btn btn-warning rounded">
                             ADD PATIENTS, NOTICE, STATUS
                         </a>
                     </div>
                     <div class="row col-12 m-2 d-flex justify-content-center align-items-center h-50">
-                        <a href="{% url 'read_messages' %}" class="box col-md-5 col-12 m-2  btn btn-danger rounded">
+                        <a href="{% url 'read_messages' %}" class="box col-md-5 col-11 m-2  btn btn-danger rounded">
                             Read Messages
                         </a>
-                        <a href="{% url 'change_data' %}" class="box col-md-5 col-12 m-2  btn btn-secondary rounded">
+                        <a href="{% url 'change_data' %}" class="box col-md-5 col-11 m-2  btn btn-secondary rounded">
                             CHANGE DATA
                         </a>
                     </div>
                     <div class="row col-12 m-2 d-flex justify-content-center align-items-center h-50">
-                        <a href="{% url 'sendsms' %}" class="box col-md-5 col-12 m-2  btn btn-warning rounded">
+                        <a href="{% url 'sendsms' %}" class="box col-md-5 col-11 m-2  btn btn-warning rounded">
                             SEND SMS TO PATIENTS
                         </a>
                     </div>
 
                 </div>
-                <div id="footer" class="w-100 m-0 mt-4 bg-danger">
+                <div id="footer" class="w-100 m-0 mt-4 pb-5 pb-m-0">
                     <p class="text-center m-0 links">&copy; Developed By <span><a class="" target="_blank"
                                 href="https://vedanttathe.netlify.app"> Vedant Tathe</a></span></p>
                 </div>
