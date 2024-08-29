@@ -126,18 +126,11 @@ animation: rotation 1s linear infinite;
                     <li class="nav-item m-1"><a class="nav-link" href="#development">LOCATION</a></li>
                     <li class="nav-item m-1"><a class="nav-link" href="#contact-me">CONTACT ME</a></li>
                 </ul>
-                <ul id="contact-icons-desk" class="mt-2 contact-icons">
-                    <span class="icon" style="font-size: larger;"><a target="_blank"
-                            href="#"><i
-                                class="fa-brands fa-linkedin"></i></a></span>
-                    <span class="icon" style="font-size: larger;"><a target="_blank"
-                            href="#"><i class="fa-brands fa-github"></i></a></span>
-                    <span class="icon" style="font-size: larger;"><a target="_blank"
-                            href="#"><i class="fa-brands fa-youtube"></i></a></span>
-                    <span class="icon" style="font-size: larger;"><a target="_blank"
-                            href="#"><i
-                                class="fa-brands fa-instagram"></i></a></span>
+                <ul id="contact-icons-desk">
+                    <span class="text-center mt-3 links text-black icon" style="font-weight: 700;">&copy; Developed By <span><a class="text-primary" target="_blank"
+                        href="https://vedanttathe.netlify.app"> Vedant Tathe</a></span>
                 </ul>
+             
             </nav>
         </div>
 
@@ -172,19 +165,10 @@ animation: rotation 1s linear infinite;
                         <li class="nav-item m-2"><a class="nav-link" href="#development">LOCATION</a></li>
                         <li class="nav-item m-2"><a class="nav-link" href="#contact-me">CONTACT ME</a></li>
                     </ul>
-                    <ul id="contact-icons" class="mt-2 contact-icons">
-                        <span class="icon" style="font-size: larger;"><a target="_blank"
-                                href="#"><i
-                                    class="fa-brands fa-linkedin"></i></a></span>
-                        <span class="icon" style="font-size: larger;"><a target="_blank"
-                                href="#"><i class="fa-brands fa-github"></i></a></span>
-                        <span class="icon" style="font-size: larger;"><a target="_blank"
-                                href="#"><i
-                                    class="fa-brands fa-youtube"></i></a></span>
-                        <span class="icon" style="font-size: larger;"><a target="_blank"
-                                href="#"><i
-                                    class="fa-brands fa-instagram"></i></a></span>
+                    <ul id="contact-icons">
+                        <span class="text-center mt-2 links text-black icon" style="font-weight: 700;">&copy; Developed By Vedant Tathe</span>
                     </ul>
+                  
                 </nav>
 
                 
@@ -207,7 +191,7 @@ animation: rotation 1s linear infinite;
                 <!-- <div id="hero" class="h-100 position-relative"> -->
                 <div id="hero" class="section slider h-100 w-100 ">
                     {% if notice != 'NOTSET' and notice != None %}
-                <div class="notice m-0 text-center shadow p-0" style="background-color: #ffa2a2; border:2px solid white">
+                <div class="notice m-0 text-center shadow p-0 text-black" style="background-color: #ffa2a2; border:2px solid white;">
 
                     <marquee>
                         <h3>{{notice|safe}}</h3>
@@ -283,7 +267,7 @@ animation: rotation 1s linear infinite;
                             <h5>{{clinic_timings|safe}}</h5>
                             
                             {% endif %}
-                            <h4 class="position-relative flex-wrap d-flex d-md-block">Mahore Homeo Clinic is Currently &nbsp; <span class="animate-status mt-4 mt-md-0"><strong>{{clinic_status}}</strong></span></h4>
+                            <h4 class="position-relative flex-wraspand-flex d-md-block">Mahore Homeo Clinic is Currently &nbsp; <span class="animate-status mt-4 mt-md-0"><strong>{{clinic_status}}</strong></span></h4>
                         </div>
                         <div class="slider-control mt-4 ms-3 p-0 d-flex flex-column position-absolute">
                             <ul class="list-unstyled">
@@ -616,22 +600,9 @@ animation: rotation 1s linear infinite;
                                             <span><i class="fa-solid fa-phone"></i> {{mobileno}}</span>
                                         </p>
 
-                                        <p class="contact-icons"><span class="" style="font-size: larger;"><a
-                                                    target="_blank"
-                                                    href="#"><i
-                                                        class="fa-brands fa-linkedin"></i></a></span>
-                                            <span class="" style="font-size: larger;"><a target="_blank"
-                                                    href="#"><i
-                                                        class="fa-brands fa-github"></i></a></span>
-                                            <span class="" style="font-size: larger;"><a target="_blank"
-                                                    href="#"><i
-                                                        class="fa-brands fa-youtube"></i></a></span>
-                                            <span class="" style="font-size: larger;"><a target="_blank"
-                                                    href="#"><i
-                                                        class="fa-brands fa-instagram"></i></a></span>
-                                        </p>
+                                        
                                         <p><a class="btn btn-secondary btn my-3 text-white" type="pdf" target="_blank"
-                                                href="documents/Vedant_Tathe_Resume_Latest.pdf">Download Resume <i
+                                                href="#">Download Resume <i
                                                     class="fa-solid fa-file-arrow-down"></i></a></p>
 
                                     </div>
@@ -669,7 +640,7 @@ animation: rotation 1s linear infinite;
                     </div>
                 </div>
                 <div id="footer" class="w-100 pb-5 pb-m-0">
-                    <p class="text-center m-0 links">&copy; Developed By <span><a class="" target="_blank" href="https://vedanttathe.netlify.app"> Vedant Tathe</a></span></p>
+                    <p class="text-center m-0 links">&copy; Developed By <span><a class="text-primary" target="_blank" href="https://vedanttathe.netlify.app"> Vedant Tathe</a></span></p>
                 </div>
 
             </div>

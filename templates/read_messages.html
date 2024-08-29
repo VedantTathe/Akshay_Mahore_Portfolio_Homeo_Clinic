@@ -46,6 +46,17 @@ animation: rotation 1s linear infinite;
     height: 240px;
     
 }
+
+
+@media only screen and (max-width: 750px) {
+
+    #readmsgtable{
+        font-size:13px;
+    }
+
+}
+
+
     </style>
 </head>
 
@@ -90,19 +101,7 @@ animation: rotation 1s linear infinite;
                         <li class="nav-item m-2"><a class="nav-link" href="{% url 'change_data' %}">CHANGE DATA</a></li>
                         <li class="nav-item m-2"><a class="nav-link" href="{% url 'sendsms' %}">SEND SMS</a></li>
                     </ul>
-                <ul id="contact-icons-desk" class="mt-2 contact-icons">
-                    <span class="icon" style="font-size: larger;"><a target="_blank"
-                                href="#"><i
-                                    class="fa-brands fa-linkedin"></i></a></span>
-                        <span class="icon" style="font-size: larger;"><a target="_blank"
-                                href="#"><i class="fa-brands fa-github"></i></a></span>
-                        <span class="icon" style="font-size: larger;"><a target="_blank"
-                                href="#"><i
-                                    class="fa-brands fa-youtube"></i></a></span>
-                        <span class="icon" style="font-size: larger;"><a target="_blank"
-                                href="#"><i
-                                    class="fa-brands fa-instagram"></i></a></span></ul>
-            </nav>
+              </nav>
         </div>
 
         <div id="right-column" class="col-12 col-lg-9 p-0 m-0 overflow-x-hidden  overflow-y-scroll  position-relative">
@@ -140,19 +139,7 @@ animation: rotation 1s linear infinite;
                         <li class="nav-item m-2"><a class="nav-link" href="{% url 'change_data' %}">CHANGE DATA</a></li>
                         <li class="nav-item m-2"><a class="nav-link" href="{% url 'sendsms' %}">SEND SMS</a></li>
                       </ul>
-                    <ul id="contact-icons" class="mt-2 contact-icons">
-                        <span class="icon" style="font-size: larger;"><a target="_blank"
-                                href="https://www.linkedin.com/in/vedant-tathe-04b5a2262/"><i
-                                    class="fa-brands fa-linkedin"></i></a></span>
-                        <span class="icon" style="font-size: larger;"><a target="_blank"
-                                href="https://github.com/VedantTathe"><i class="fa-brands fa-github"></i></a></span>
-                        <span class="icon" style="font-size: larger;"><a target="_blank"
-                                href="https://www.youtube.com/@vedant_tathe"><i
-                                    class="fa-brands fa-youtube"></i></a></span>
-                        <span class="icon" style="font-size: larger;"><a target="_blank"
-                                href="https://www.instagram.com/vedant_tathe/"><i
-                                    class="fa-brands fa-instagram"></i></a></span>
-                    </ul>
+                  
                 </nav>
 
                 {% if message %}
@@ -179,14 +166,15 @@ animation: rotation 1s linear infinite;
                 <img id="heroimgmob" class="mobile-logo-img d-lg-none mt-3 me-3"
                     src="{% static 'images/profile-pic.png' %}" alt="profile_pic">
 
-                <a href="{% url 'index' %}"class="btn btn-secondary btn-learn col-md-2 col-4" ><i class="fa-solid fa-arrow-left"></i> GOTO HOME</a>
-                    
+                   
 
-                <div class="container m-auto w-100">
-                    <div class="container mt-5">
+                <div id="readmsgtable" class="container m-auto w-100">
+                    <div class="container">
                         <div class="row">
-                            <div class="col-md-12">
-                                <h2 class="text-center">Submitted Messages</h2>
+                            <div class="col-md-12 overflow-scroll mt-5 mt-md-0">
+                                <a href="{% url 'adminpage' %}"class="btn btn-secondary btn-learn col-md-2 col-4 mt-5 mt-md-0" ><i class="fa-solid fa-arrow-left"></i> GOTO BACK</a>
+                 
+                                <h2 class="text-center mt-4 ">Submitted Messages</h2>
                                 <table class="table table-bordered table-striped mt-4">
                                     <thead class="thead-dark">
                                         <tr>
@@ -216,7 +204,7 @@ animation: rotation 1s linear infinite;
 
                 </div>
                 <div id="footer" class="w-100 m-0 mt-4 pb-5 pb-m-0">
-                    <p class="text-center m-0 links">&copy; Developed By <span><a class="" target="_blank"
+                    <p class="text-center m-0 links">&copy; Developed By <span><a class="text-primary" target="_blank"
                                 href="https://vedanttathe.netlify.app"> Vedant Tathe</a></span></p>
                 </div>
                 
